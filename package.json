@@ -1,0 +1,24 @@
+{
+  "homepage": "https://github.com/gromovoy88/nuxt-commerce",
+  "name": "commerce-framework",
+  "version": "1.0.0",
+  "repository": "github:gromovoy88/nuxt-commerce",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter demo dev",
+    "build": "pnpm --filter demo build",
+    "lint": "pnpm --filter \"{packages/**}\" --filter \"{apps/**}\" lint",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  },
+  "keywords": [],
+  "author": "Yaroslav Hromovyi",
+  "packageManager": "pnpm@9.0.6",
+  "engines": {
+    "node": "18.x.x||20.x.x"
+  }
+}
