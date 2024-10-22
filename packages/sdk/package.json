@@ -1,0 +1,41 @@
+{
+  "name": "@thunderstorefront/sdk",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "files": [
+    "nuxt.config.ts",
+    "thunder-sdk.config.ts",
+    "layouts",
+    "components",
+    "pages",
+    "app.vue",
+    "composables",
+    "app.config.ts",
+    "assets",
+    "lang",
+    "types",
+    "server"
+  ],
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "lint": "eslint .",
+    "postinstall": "nuxt prepare .playground"
+  },
+  "dependencies": {
+    "@thunderstorefront/types": "workspace:*",
+    "@thunderstorefront/api-mock": "workspace:*"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "latest",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "nuxt": "latest",
+    "typescript": "^5.5.4",
+    "prettier": "^3.3.3"
+  }
+}
