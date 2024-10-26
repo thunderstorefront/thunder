@@ -94,9 +94,6 @@ importers:
 
   packages/thunder:
     dependencies:
-      '@thunderstorefront/api-mock':
-        specifier: workspace:*
-        version: link:../api-mock
       '@thunderstorefront/sdk':
         specifier: workspace:*
         version: link:../sdk
