@@ -1,20 +1,16 @@
 {
   "name": "@thunderstorefront/sdk",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./nuxt.config.ts",
   "files": [
     "nuxt.config.ts",
     "thunder-sdk.config.ts",
-    "layouts",
+    "app.config.ts",
+    "app.vue",
     "components",
     "pages",
-    "app.vue",
     "composables",
-    "app.config.ts",
-    "assets",
-    "lang",
-    "types",
     "server"
   ],
   "scripts": {
