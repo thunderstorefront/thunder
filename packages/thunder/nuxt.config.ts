@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'url';
 import thunderConfig from './thunder.config';
 
 export default defineNuxtConfig({
@@ -91,15 +90,6 @@ export default defineNuxtConfig({
         'octicon'
       ]
     }
-  },
-
-  alias: {
-    '@thunderstorefront/types': fileURLToPath(
-      new URL('../../packages/types/src', import.meta.url)
-    ),
-    '@thunderstorefront/types/*': fileURLToPath(
-      new URL('../../packages/types/src/*', import.meta.url)
-    )
   },
 
   compatibilityDate: '2024-10-01'
