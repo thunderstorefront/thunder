@@ -1,6 +1,6 @@
 {
   "name": "@thunderstorefront/thunder",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "type": "module",
   "main": "./nuxt.config.ts",
@@ -21,7 +21,8 @@
     "server",
     "utils",
     "plugins",
-    "public"
+    "public",
+    "middleware"
   ],
   "scripts": {
     "dev": "nuxi dev .playground",
