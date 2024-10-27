@@ -5,6 +5,10 @@ export default defineNuxtConfig({
 
   extends: ['@thunderstorefront/api-mock', '@thunderstorefront/sdk'],
 
+  future: {
+    compatibilityVersion: 4
+  },
+
   modules: [
     '@nuxt/eslint',
     '@nuxtjs/i18n',

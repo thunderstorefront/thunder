@@ -1,5 +1,3 @@
-import { paths } from './paths';
-
 export function getCategoryPath(slug: string): string {
   return `${paths.category}/${slug}`;
 }

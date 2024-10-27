@@ -1,7 +1,7 @@
 {
   "name": "@thunderstorefront/types",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Thunder Storefront types package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,15 +16,15 @@
   "author": "Yaroslav Hromovyi",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
-    "@typescript-eslint/eslint-plugin": "^8.4.0",
-    "@typescript-eslint/parser": "^8.4.0",
-    "eslint": "^9.10.0",
+    "@eslint/js": "^9.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
     "prettier-eslint": "^16.3.0",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.4.0"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0"
   },
   "dependencies": {
-    "@types/node": "^22.5.4"
+    "@types/node": "^22.8.1"
   }
 }

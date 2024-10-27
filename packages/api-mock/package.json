@@ -1,20 +1,14 @@
 {
   "name": "@thunderstorefront/api-mock",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "main": "./nuxt.config.ts",
+  "keywords": ["thunder", "shop-mock", "thunderstorefront"],
+  "author": "Yaroslav Hromovyi",
   "files": [
     "nuxt.config.ts",
-    "layouts",
-    "components",
-    "pages",
-    "app.vue",
-    "composables",
-    "app.config.ts",
-    "assets",
-    "lang",
     "server",
-    "types"
+    "app"
   ],
   "scripts": {
     "dev": "nuxi dev .playground",

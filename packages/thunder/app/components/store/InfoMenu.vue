@@ -16,8 +16,10 @@ function handleClick() {
       @click.prevent="showMegaMenu = !showMegaMenu"
     >
       <BaseTypography variant="heading">
-        <span>{{ $t('messages.shop.catalog') }}</span>
-        <span><Icon name="solar:alt-arrow-right-linear" class="ml-2" /></span>
+        <span class="flex items-center"
+          >{{ $t('messages.shop.catalog') }}
+          <Icon name="solar:alt-arrow-right-linear" class="ml-2 h-8 w-8"
+        /></span>
       </BaseTypography>
     </a>
 
