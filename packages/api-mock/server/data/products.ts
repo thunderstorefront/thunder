@@ -1,5 +1,69 @@
-export const products = [
+import type { ProductOption, ProductPage } from '@thunderstorefront/types';
+
+const options: ProductOption[] = [
   {
+    id: '1',
+    name: 'Storage Capacity',
+    values: [
+      { id: '1-1', label: '64GB' },
+      { id: '1-2', label: '128GB' },
+      { id: '1-3', label: '256GB' },
+      { id: '1-4', label: '512GB' },
+      { id: '1-5', label: '1TB' }
+    ]
+  },
+  {
+    id: '2',
+    name: 'Color',
+    values: [
+      { id: '2-1', label: 'Black', hexColor: '#000000' },
+      { id: '2-2', label: 'Silver', hexColor: '#C0C0C0' },
+      { id: '2-3', label: 'Gold', hexColor: '#FFD700' },
+      { id: '2-4', label: 'Blue', hexColor: '#1D4ED8' },
+      { id: '2-5', label: 'Green', hexColor: '#34D399' },
+      { id: '2-6', label: 'Purple', hexColor: '#6B21A8' }
+    ]
+  }
+];
+
+const metadata: Record<string, unknown> = {
+  model: 'iPhone 13',
+  display: {
+    size: '6.1 inches',
+    type: 'Super Retina XDR',
+    resolution: '2532 x 1170 pixels'
+  },
+  processor: {
+    name: 'A15 Bionic chip',
+    cores: 6,
+    neuralEngine: '16-core Neural Engine'
+  },
+  storageOptions: ['64GB', '128GB', '256GB', '512GB'],
+  connectivity: {
+    cellular: '5G',
+    wifi: 'Wi-Fi 6 (802.11ax)',
+    bluetooth: 'Bluetooth 5.0',
+    nfc: true
+  },
+  battery: {
+    type: 'Built-in rechargeable lithium-ion',
+    videoPlayback: 'Up to 19 hours',
+    audioPlayback: 'Up to 75 hours'
+  },
+  dimensions: {
+    height: '146.7 mm',
+    width: '71.5 mm',
+    depth: '7.65 mm',
+    weight: '173 grams'
+  },
+  waterResistance: 'IP68 (up to 6 meters for 30 minutes)',
+  operatingSystem: 'iOS 15',
+  faceID: true
+};
+
+export const products: ProductPage[] = [
+  {
+    type: 'ConfigurableProduct',
     title: 'Mocked iPhone 13',
     image: {
       url: '/images/products/smartphone/iphone.jpg',
@@ -26,9 +90,13 @@ export const products = [
     slug: 'mocked-iphone-13',
     id: 'MIP13-128GB-BLK',
     shortDescription:
-      'Mocked iPhone 13 with A15 Bionic chip and 128GB storage.',
+      "Experience the power of the iPhone 13, equipped with Apple's A15 Bionic chip for lightning-fast performance and stunning visuals. Featuring a vibrant Super Retina XDR display and 128GB of storage, this model is perfect for capturing high-quality photos, multitasking, and seamless app usage. With enhanced battery life and 5G capability, stay connected and enjoy your content longer and faster than ever.",
     description:
-      'This is a mock product for the iPhone 13, featuring a 6.1-inch Super Retina XDR display, A15 Bionic chip, and 5G capability.',
+      'This is a mock product for the iPhone 13, a beautifully designed smartphone packed with cutting-edge technology. It features a 6.1-inch Super Retina XDR display, offering stunning clarity and vibrant colors that bring photos, videos, and games to life. Powered by the A15 Bionic chip, the iPhone 13 delivers lightning-fast performance and efficient power usage, enabling smooth multitasking, gaming, and high-quality photography.\n' +
+      '\n' +
+      'With 5G capability, the iPhone 13 ensures faster downloads, seamless streaming, and better connectivity, making it easier to stay connected wherever you are. The device is equipped with a dual-camera system that captures sharp photos and videos, even in low light, and offers a range of photography features like Night mode, Photographic Styles, and Cinematic mode for video.\n' +
+      '\n' +
+      'Additionally, the iPhone 13 includes 128GB of storage, giving you ample space for apps, photos, videos, and more. With enhanced durability through its Ceramic Shield front cover and water resistance, this model is designed to last. Enjoy all-day battery life, Face ID security, and the seamless integration with Apple’s ecosystem for a premium user experience.',
     priceRange: {
       minPrice: {
         currency: 'USD',
@@ -101,11 +169,15 @@ export const products = [
         inStock: false
       }
     ],
+    options,
     ratingSummary: 75,
     reviewCount: 25,
-    inStock: true
+    inStock: true,
+    metadata,
+    categories: []
   },
   {
+    type: 'SimpleProduct',
     title: 'Mocked Sony WH-1000XM4',
     image: {
       url: '/images/products/headphones/sony.webp',
@@ -137,11 +209,16 @@ export const products = [
         value: 399
       }
     },
+    variants: [],
+    options: [],
     ratingSummary: 67,
     reviewCount: 9,
-    inStock: true
+    inStock: true,
+    metadata: {},
+    categories: []
   },
   {
+    type: 'SimpleProduct',
     title: 'Mocked Samsung Galaxy S21',
     image: {
       url: '/images/products/smartphone/galaxy_s21.webp',
@@ -173,11 +250,16 @@ export const products = [
         value: 849
       }
     },
+    variants: [],
+    options: [],
     ratingSummary: 99,
     reviewCount: 19,
-    inStock: true
+    inStock: true,
+    metadata: {},
+    categories: []
   },
   {
+    type: 'SimpleProduct',
     title: 'Mocked Bose QuietComfort 35 II',
     image: {
       url: '/images/products/headphones/bose_qc35.png',
@@ -209,11 +291,16 @@ export const products = [
         value: 349
       }
     },
+    variants: [],
+    options: [],
     ratingSummary: 80,
     reviewCount: 21,
-    inStock: true
+    inStock: true,
+    metadata: {},
+    categories: []
   },
   {
+    type: 'SimpleProduct',
     title: 'Mocked MacBook Pro 14"',
     image: {
       url: '/images/products/laptop/macbook.webp',
@@ -245,8 +332,12 @@ export const products = [
         value: 2499
       }
     },
+    variants: [],
+    options: [],
     ratingSummary: 50,
     reviewCount: 12,
-    inStock: true
+    inStock: true,
+    metadata: {},
+    categories: []
   }
 ];

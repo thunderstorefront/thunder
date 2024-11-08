@@ -17,33 +17,17 @@ defineProps<{
     </div>
 
     <div class="mb-4 flex flex-col gap-4 lg:mb-6">
-      <StarRating :value="product.ratingSummary" :size="'24px'" />
-      <a
-        v-if="product.reviewCount"
-        href="#reviews"
-        class="cursor-pointer text-sm font-normal leading-3 text-gray-500 underline duration-100 hover:text-gray-700"
-      >
-        {{ product.reviewCount }} {{ $t('messages.shop.reviews') }}
-      </a>
+      <slot name="rating"></slot>
     </div>
 
     <div class="mb-6 text-sm text-gray-700 md:mb-10">
-      <span v-html="product.shortDescription" />
+      <slot name="description"></slot>
     </div>
-
-    <slot name="variants"> </slot>
 
     <slot name="options"> </slot>
 
-    <slot name="add-to-cart">
-      <ProductPageAddToCartActions :product="product">
-        <template #secondary-actions>
-          <ProductAddToWishlist
-            :product-title="product.title"
-            :product-id="product.id"
-          />
-        </template>
-      </ProductPageAddToCartActions>
-    </slot>
+    <slot name="variants"> </slot>
+
+    <slot name="add-to-cart"> </slot>
   </div>
 </template>

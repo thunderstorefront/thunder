@@ -1,5 +1,5 @@
-import { Image } from './media';
-import { Tree } from './common';
+import type { Image } from './media';
+import type { Tree } from './common';
 
 export type CategoryBreadcrumb = {
   categoryId: string;

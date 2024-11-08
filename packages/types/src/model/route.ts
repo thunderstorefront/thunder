@@ -1,6 +1,6 @@
-import { Page } from './content';
-import { Product } from './product';
-import { CategoryItem } from './category';
+import type { Page } from './content';
+import type { Product } from './product';
+import type { CategoryItem } from './category';
 
 export type Routes = 'Category' | 'Product' | 'Page';
 

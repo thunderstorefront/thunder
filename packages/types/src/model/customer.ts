@@ -1,5 +1,5 @@
-import { Address } from './address';
-import { Money } from './money';
+import type { Address } from './address';
+import type { Money } from './money';
 
 export type CustomerAddress = Address & {
   id: number;

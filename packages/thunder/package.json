@@ -4,7 +4,11 @@
   "license": "MIT",
   "type": "module",
   "main": "./nuxt.config.ts",
-  "keywords": ["thunder", "template", "thunderstorefront"],
+  "keywords": [
+    "thunder",
+    "template",
+    "thunderstorefront"
+  ],
   "author": "Yaroslav Hromovyi",
   "files": [
     "nuxt.config.ts",
@@ -20,19 +24,24 @@
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
     "lint": "eslint .",
-    "postinstall": "nuxt prepare .playground"
+    "postinstall": "nuxt prepare .playground",
+    "typecheck": "nuxi typecheck ."
   },
   "dependencies": {
-    "vue": "latest",
-    "vue-router": "latest",
     "@thunderstorefront/sdk": "workspace:*",
     "@thunderstorefront/types": "workspace:*",
     "nuxt-swiper": "^1.2.2",
     "swiper": "^11.1.14",
-    "typescript": "^5.6.3"
+    "vue": "latest",
+    "vue-router": "latest"
   },
   "devDependencies": {
-    "nuxt": "latest",
+    "@iconify-json/heroicons": "^1.2.1",
+    "@iconify-json/material-symbols": "^1.2.5",
+    "@iconify-json/octicon": "^1.2.1",
+    "@iconify-json/ri": "^1.2.2",
+    "@iconify-json/solar": "^1.2.1",
+    "@iconify-json/tabler": "^1.2.6",
     "@nuxt/eslint": "latest",
     "@nuxt/icon": "^1.5.8",
     "@nuxt/image": "1.8.1",
@@ -45,16 +54,13 @@
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "nuxt": "latest",
     "postcss-custom-properties": "^14.0.3",
     "postcss-import": "^16.1.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.14",
-    "@iconify-json/heroicons": "^1.2.1",
-    "@iconify-json/material-symbols": "^1.2.5",
-    "@iconify-json/octicon": "^1.2.1",
-    "@iconify-json/ri": "^1.2.2",
-    "@iconify-json/solar": "^1.2.1",
-    "@iconify-json/tabler": "^1.2.6"
+    "typescript": "^5.6.3",
+    "vue-tsc": "^2.1.10"
   }
 }

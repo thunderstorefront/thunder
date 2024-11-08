@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['@thunderstorefront/thunder'],
+  extends: ['@thunderstorefront/thunder', '@thunderstorefront/api-mock'],
 
   future: {
     compatibilityVersion: 4,

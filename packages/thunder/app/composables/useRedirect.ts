@@ -1,6 +1,6 @@
 import type { Route } from '@thunderstorefront/types';
 
-export function useRedirect(url: string, route: Route | null): void {
+export function useRedirect(url: string, route?: Route): void {
   const localePath = useLocalePath();
   try {
     if (!route) {

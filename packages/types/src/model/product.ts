@@ -1,9 +1,11 @@
-import { Money } from './money';
-import { Image } from './media';
-import { Category } from './category';
-import { Filter } from './filter';
-import { SortField } from './sort';
-import { PageInfo } from './pagination';
+import type { Money } from './money';
+import type { Image } from './media';
+import type { Category } from './category';
+import type { Filter } from './filter';
+import type { SortField } from './sort';
+import type { PageInfo } from './pagination';
+
+export type ProductType = 'SimpleProduct' | 'ConfigurableProduct';
 
 export type PriceRange = {
   minPrice: Money;
@@ -19,7 +21,20 @@ export type ProductVariant = {
   inStock: boolean;
 };
 
+export type ProductOptionValue = {
+  id: string;
+  label: string;
+  hexColor?: string;
+};
+
+export type ProductOption = {
+  id: string;
+  name: string;
+  values: ProductOptionValue[];
+};
+
 export type Product = {
+  type: ProductType;
   id: string;
   title: string;
   slug: string;
@@ -30,8 +45,10 @@ export type Product = {
   priceRange: PriceRange;
   ratingSummary: number;
   reviewCount: number;
-  variants?: ProductVariant[];
+  variants: ProductVariant[];
+  options: ProductOption[];
   inStock: boolean;
+  metadata: Record<string, unknown>;
 };
 
 export type ProductPage = Product & {

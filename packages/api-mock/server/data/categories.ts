@@ -1,4 +1,6 @@
-export const categories = [
+import type { Category } from '@thunderstorefront/types';
+
+export const categories: Category[] = [
   {
     title: 'Electronics',
     productCount: 1200,

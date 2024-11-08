@@ -3,7 +3,7 @@ import thunderConfig from './thunder.config';
 export default defineNuxtConfig({
   debug: process.env.NODE_ENV === 'development',
 
-  extends: ['@thunderstorefront/api-mock', '@thunderstorefront/sdk'],
+  extends: ['@thunderstorefront/sdk'],
 
   future: {
     compatibilityVersion: 4

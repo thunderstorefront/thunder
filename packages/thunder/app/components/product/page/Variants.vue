@@ -7,7 +7,7 @@ const { productPath } = useProductCard(props.product);
 </script>
 
 <template>
-  <div v-if="product.variants">
+  <div v-if="product.variants.length">
     <BaseTypography variant="subtitle" class="mb-4 font-semibold">
       {{ $t('messages.shop.moreVariants') }}
     </BaseTypography>

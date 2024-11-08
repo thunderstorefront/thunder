@@ -1,4 +1,6 @@
-export const filters = [
+import type { Filter } from '@thunderstorefront/types';
+
+export const filters: Filter[] = [
   {
     label: 'Price',
     attributeCode: 'price',

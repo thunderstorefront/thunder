@@ -1,4 +1,4 @@
-import { Product } from './product';
+import type { Product } from './product';
 
 export type WishlistItem = {
   id: string;

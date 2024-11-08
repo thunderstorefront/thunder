@@ -10,6 +10,7 @@
     "dev": "pnpm --filter demo dev",
     "build": "pnpm --filter demo build",
     "lint": "pnpm --filter \"{packages/**}\" --filter \"{apps/**}\" lint",
+    "typecheck": "pnpm --filter \"{packages/**}\" --filter \"{apps/**}\" typecheck",
     "prepare": "husky install"
   },
   "devDependencies": {

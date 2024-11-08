@@ -1,7 +1,7 @@
-import { Maybe } from './common';
-import { Money } from './money';
-import { Address } from './address';
-import { Product } from './product';
+import type { Maybe } from './common';
+import type { Money } from './money';
+import type { Address } from './address';
+import type { Product } from './product';
 
 export type PaymentMethod = {
   code: string;

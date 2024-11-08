@@ -7,12 +7,18 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxi typecheck"
   },
   "dependencies": {
+    "@thunderstorefront/thunder": "workspace:*",
+    "@thunderstorefront/api-mock": "workspace:*",
     "nuxt": "latest",
     "vue": "latest",
-    "vue-router": "latest",
-    "@thunderstorefront/thunder": "workspace:*"
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vue-tsc": "^2.1.10"
   }
 }
