@@ -3,8 +3,10 @@ import { categories } from '../../data/categories';
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id');
+  const rootCategory = categories[0];
+
   return {
     ...products.find((product) => product.id === id),
-    categories: categories[0].children
+    categories: rootCategory ? rootCategory.children : []
   };
 });

@@ -22,7 +22,7 @@
     "preview": "nuxt preview .playground",
     "lint": "eslint .",
     "postinstall": "nuxt prepare .playground",
-    "typecheck": "nuxi typecheck ./app"
+    "typecheck": "nuxi typecheck ."
   },
   "dependencies": {
     "@thunderstorefront/types": "workspace:*"
