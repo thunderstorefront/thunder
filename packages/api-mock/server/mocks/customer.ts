@@ -22,7 +22,7 @@ export const mockCustomerAddress = (): CustomerAddress => ({
 export const mockCustomer = (): Customer => ({
   defaultBilling: faker.string.uuid(),
   defaultShipping: faker.string.uuid(),
-  dob: faker.date.past().toISOString().split('T')[0],
+  dob: faker.date.past().toISOString().split('T')[0] as string,
   email: faker.internet.email(),
   firstName: faker.person.firstName(),
   gender: faker.person.gender(),
@@ -62,7 +62,7 @@ export const mockCustomerOrderTotal = (): CustomerOrderTotal => ({
 // Mock for CustomerOrder
 export const mockCustomerOrder = (): CustomerOrder => ({
   number: faker.string.uuid(),
-  orderDate: faker.date.past().toISOString().split('T')[0],
+  orderDate: faker.date.past().toISOString().split('T')[0] as string,
   shipments: Array.from({ length: 3 }, mockCustomerOrderShipment),
   total: mockCustomerOrderTotal(),
   items: Array.from({ length: 3 }, mockCustomerOrderItem)

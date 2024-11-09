@@ -23,16 +23,19 @@ function findCategoryBySlug(
 
 export default defineEventHandler((event) => {
   const slug = getRouterParam(event, 'slug');
+  const rootCategory = categories[0];
 
-  const category = findCategoryBySlug(categories[0], slug);
+  if (rootCategory) {
+    const category = findCategoryBySlug(rootCategory, slug);
 
-  if (category) {
-    return {
-      ...mockRouteData('Category'),
-      id: category.id,
-      title: category.title,
-      slug: category.slug
-    };
+    if (category) {
+      return {
+        ...mockRouteData('Category'),
+        id: category.id,
+        title: category.title,
+        slug: category.slug
+      };
+    }
   }
 
   const product = products.find((product) => product.slug === slug);

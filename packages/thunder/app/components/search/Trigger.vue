@@ -4,7 +4,7 @@ const localePath = useLocalePath();
 
 <template>
   <NuxtLink
-    :to="localePath(paths.search)"
+    :to="localePath(ROUTES.search)"
     class="relative flex"
     title="Search products"
   >

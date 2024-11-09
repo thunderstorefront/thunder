@@ -4,6 +4,7 @@ export interface UseStoreConfig {
   storeConfig: Ref<StoreConfig | null>;
   fetchStoresConfig: () => Promise<StoreConfig[]>;
   fetchStoreConfig: (storeId: string) => Promise<StoreConfig>;
+  updateStoreConfig: (storeId: string) => Promise<StoreConfig>;
 }
 
 export function useStoreConfig(): UseStoreConfig {
@@ -18,9 +19,15 @@ export function useStoreConfig(): UseStoreConfig {
     return await client(`/api/store/config/${storeId}`);
   }
 
+  async function updateStoreConfig(storeId: string): Promise<StoreConfig> {
+    storeConfig.value = await fetchStoreConfig(storeId);
+    return storeConfig.value;
+  }
+
   return {
     storeConfig,
     fetchStoresConfig,
-    fetchStoreConfig
+    fetchStoreConfig,
+    updateStoreConfig
   };
 }

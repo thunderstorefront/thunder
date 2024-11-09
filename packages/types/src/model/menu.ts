@@ -1,5 +1,5 @@
-import { Tree } from './common';
-import { Category } from './category';
+import type { Tree } from './common';
+import type { Category } from './category';
 
 export type MegaMenuItem = Exclude<Category, 'image' | 'description'>;
 

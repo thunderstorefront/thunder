@@ -36,7 +36,7 @@ defineEmits(['select-method']);
     </div>
 
     <BaseTypography variant="subtitle">
-      <MoneyValue v-bind="item.amount" class="font-bold" />
+      <Money v-bind="item.amount" class="font-bold" />
     </BaseTypography>
   </div>
 </template>

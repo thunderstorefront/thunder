@@ -142,7 +142,7 @@
       "moreVariants": "More variants",
       "noResults": "No results",
       "productAddedToCart": "Product %1 was added to cart",
-      "continueShopping": "Continiue shopping",
+      "continueShopping": "Continue shopping",
       "product": "Product",
       "products": "Products",
       "allProducts": "All Products",
@@ -152,7 +152,11 @@
       "sortBy": "Sort by",
       "ourBrands": "Our Brands",
       "showMore": "Show more",
-      "showLess": "Show less"
+      "showLess": "Show less",
+      "showSpecification": "Show specification",
+      "fullSpecification": "Full specification",
+      "specification": "Specification",
+      "details": "Details"
     },
     "wishlist": {
       "successAdded": "Successfully added to wishlist %1"

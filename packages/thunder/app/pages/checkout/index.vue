@@ -45,7 +45,7 @@ async function payNow() {
     await placeOrder();
     cart.value = await createEmptyCart();
     await navigateTo({
-      path: localePath(paths.checkoutSuccess)
+      path: localePath(ROUTES.checkoutSuccess)
     });
   } catch (error) {
     showError(error);

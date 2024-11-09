@@ -12,7 +12,7 @@ const { data } = await useAsyncData('reviewsData', () =>
 </script>
 
 <template>
-  <div id="reviews" class="flex items-center justify-center">
+  <div class="flex items-center justify-center">
     <div class="flex w-full flex-col items-start justify-start space-y-8">
       <div class="flex items-start justify-start">
         <BaseTypography variant="heading">

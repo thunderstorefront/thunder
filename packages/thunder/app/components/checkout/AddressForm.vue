@@ -11,8 +11,10 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
-const { countries, fetchCountries } = useCountry();
+const { countries, updateCountries } = useCountry();
 const { getRegions } = useRegion();
+
+await useAsyncData('countries', () => updateCountries());
 
 const regions = ref<Region[]>([]);
 const formData = reactive<Address>({ ...props.address });
@@ -27,8 +29,6 @@ const errors = reactive({
   telephone: ''
 });
 const validated = ref<boolean>(false);
-
-countries.value = await fetchCountries();
 
 function validateForm() {
   const message = t('messages.error.requiredField');
@@ -57,9 +57,12 @@ function handleSubmitForm() {
   validated.value = true;
 }
 
-watch(formData, async () => {
-  regions.value = await getRegions(formData.country);
-});
+watch(
+  () => formData.country,
+  async () => {
+    regions.value = await getRegions(formData.country);
+  }
+);
 </script>
 
 <template>
@@ -101,11 +104,22 @@ watch(formData, async () => {
     />
     <FormField
       :id="'fStreet'"
-      v-model="formData.street[0]"
+      v-model="formData.street[0] as string"
       :error="validated ? errors.street : ''"
       :label="$t('messages.form.address1')"
       :name="'fStreet'"
       :placeholder="$t('messages.form.address1')"
+      :type="'text'"
+      class="mb-4"
+      :required="true"
+    />
+    <FormField
+      :id="'fStreet'"
+      v-model="formData.street[1] as string"
+      :error="validated ? errors.street : ''"
+      :label="$t('messages.form.address2')"
+      :name="'fStreet'"
+      :placeholder="$t('messages.form.address2')"
       :type="'text'"
       class="mb-4"
       :required="true"
@@ -141,7 +155,7 @@ watch(formData, async () => {
       :label="$t('messages.form.country')"
       :name="'fCity'"
       :placeholder="$t('messages.form.selectCountry')"
-      :options="countries"
+      :options="countries as unknown as Record<string, string>[]"
       :option-label-key="'fullNameLocale'"
       :option-value-key="'twoLetterAbbreviation'"
       :required="true"
@@ -155,7 +169,7 @@ watch(formData, async () => {
       :label="$t('messages.form.region')"
       :name="'fRegion'"
       :placeholder="$t('messages.form.selectRegion')"
-      :options="regions"
+      :options="regions as unknown as Record<string, string>[]"
       :option-label-key="'name'"
       :option-value-key="'id'"
       :disabled="regions.length === 0"

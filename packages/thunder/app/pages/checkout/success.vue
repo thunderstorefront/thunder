@@ -4,7 +4,7 @@ const localePath = useLocalePath();
 
 if (!orderNumber.value) {
   navigateTo({
-    path: localePath(paths.home)
+    path: localePath(ROUTES.home)
   });
 }
 

@@ -90,7 +90,7 @@ function updateRatingsData({ id, value }: { id: string; value: string }) {
           />
           <ProductReviewRatingInput
             v-for="rating in ratings"
-            :key="rating"
+            :key="rating.id"
             :rating="rating"
             :size="'24px'"
             class="mb-4"

@@ -1,4 +1,4 @@
-export const paths = {
+export const ROUTES = {
   home: '/',
   category: '/category',
   product: '/product',

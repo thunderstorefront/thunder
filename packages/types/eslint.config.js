@@ -7,6 +7,9 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
   {
-    ignores: ['node_modules', 'dist']
+    ignores: ['node_modules', 'dist'],
+    rules: {
+      '@typescript-eslint/consistent-type-imports': 'error'
+    }
   }
 );

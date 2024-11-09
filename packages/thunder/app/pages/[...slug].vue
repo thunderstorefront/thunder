@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const route = useRoute();
-const url = [...route.params.slug].join('/');
+const { params } = useRoute();
+const url = [...(params.slug ?? '')].join('/');
 const { fetchRoute } = useStoreRoute();
 
 const { data } = await useAsyncData(`storeRouteData-${url}`, () =>

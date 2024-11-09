@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Category, ProductListInput } from '@thunderstorefront/types';
 
-const route = useRoute();
+const { params } = useRoute();
 const { fetchRoute } = useStoreRoute();
 const { fetchCategory } = useCategory();
 const { fetchProducts } = useProduct();
@@ -11,7 +11,7 @@ const categoryId = ref('');
 const category = ref<Category | null>(null);
 const input = ref<ProductListInput>({});
 
-const slug = [...route.params.slug].join('/');
+const slug = [...(params.slug ?? '')].join('/');
 
 const { data: routeData } = await useAsyncData('storeRouteData', () =>
   fetchRoute(slug)
@@ -25,13 +25,13 @@ const { data: categoryData } = await useAsyncData('categoryData', () =>
   fetchCategory(categoryId.value)
 );
 
-category.value = categoryData.value;
+if (categoryData.value) {
+  category.value = categoryData.value;
 
-if (category.value?.id) {
   input.value = {
     filters: {
       category_id: {
-        eq: category.value.id
+        eq: categoryId.value
       }
     }
   };

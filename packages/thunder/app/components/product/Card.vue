@@ -79,9 +79,11 @@ const price = computed(() => props.product.priceRange);
         }"
       >
         <span class="font-bold">{{ product.title }}</span>
-        <span class="hidden text-xs text-gray-500 md:block">{{
-          product.shortDescription
-        }}</span>
+        <span class="hidden text-xs text-gray-500 md:block">
+          <span class="line-clamp-2">
+            {{ product.shortDescription }}
+          </span></span
+        >
         <div class="mt-auto flex w-full items-center justify-between">
           <div v-if="price.maxPrice?.value === price.minPrice.value">
             <ProductPrice :price="price.minPrice" />

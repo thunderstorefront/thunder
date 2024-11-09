@@ -3,6 +3,6 @@ export default defineNuxtRouteMiddleware(() => {
   const { cart } = useCart();
 
   if (!cart.value?.items?.length) {
-    return navigateTo({ path: localePath(paths.home) });
+    return navigateTo({ path: localePath(ROUTES.home) });
   }
 });

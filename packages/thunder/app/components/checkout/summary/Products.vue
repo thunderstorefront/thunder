@@ -12,7 +12,7 @@ const localePath = useLocalePath();
       <div class="flex-auto" />
       <NuxtLink
         title="Edit cart"
-        :to="localePath(paths.cart)"
+        :to="localePath(ROUTES.cart)"
         class="cursor-pointer text-base font-normal text-gray-600 underline hover:text-gray-800 dark:text-gray-50 dark:hover:text-white"
       >
         {{ $t('messages.general.edit') }}

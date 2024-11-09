@@ -9,27 +9,27 @@ const localePath = useLocalePath();
     </BaseTypography>
     <AccountNavigation>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(paths.account)">
+        <NuxtLink :to="localePath(ROUTES.account)">
           {{ $t('messages.account.dashboard') }}
         </NuxtLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(paths.accountOrders)">
+        <NuxtLink :to="localePath(ROUTES.accountOrders)">
           {{ $t('messages.account.orders') }}
         </NuxtLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(paths.accountEdit)">
+        <NuxtLink :to="localePath(ROUTES.accountEdit)">
           {{ $t('messages.account.profile') }}
         </NuxtLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(paths.accountAddressList)">
+        <NuxtLink :to="localePath(ROUTES.accountAddressList)">
           {{ $t('messages.account.addresses') }}
         </NuxtLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(paths.accountWishlist)">
+        <NuxtLink :to="localePath(ROUTES.accountWishlist)">
           {{ $t('messages.account.wishlist') }}
         </NuxtLink>
       </AccountNavigationItem>

@@ -7,5 +7,5 @@ defineProps<{
 </script>
 
 <template>
-  <MoneyValue :currency="price.currency" :value="price.value" />
+  <Money :currency="price.currency" :value="price.value" />
 </template>

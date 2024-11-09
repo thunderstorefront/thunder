@@ -1,7 +1,7 @@
 {
   "name": "@thunderstorefront/api-mock",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "./nuxt.config.ts",
   "keywords": ["thunder", "shop-mock", "thunderstorefront"],
   "author": "Yaroslav Hromovyi",
@@ -16,7 +16,8 @@
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
     "lint": "eslint .",
-    "postinstall": "nuxt prepare .playground"
+    "postinstall": "nuxt prepare .playground",
+    "typecheck": "nuxi typecheck ."
   },
   "dependencies": {
     "@thunderstorefront/types": "workspace:*",

@@ -1,7 +1,10 @@
 import { categories } from '../../data/categories';
 import type { Category } from '@thunderstorefront/types';
 
-function findCategoryById(category: Category, id?: string): Category | null {
+function findCategoryById(
+  category: Category,
+  id?: string
+): Category | undefined {
   if (category.id === id) {
     return category;
   }
@@ -13,10 +16,13 @@ function findCategoryById(category: Category, id?: string): Category | null {
       }
     }
   }
-  return null;
 }
 
-export default defineEventHandler((event) => {
+export default defineEventHandler((event): Category | undefined => {
   const id = getRouterParam(event, 'id');
-  return findCategoryById(categories[0], id);
+  const rootCategory = categories[0];
+
+  if (!rootCategory) return;
+
+  return findCategoryById(rootCategory, id);
 });

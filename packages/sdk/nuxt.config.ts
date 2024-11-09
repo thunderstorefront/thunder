@@ -2,8 +2,6 @@
 import thunderSdkConfig from './thunder-sdk.config';
 
 export default defineNuxtConfig({
-  extends: ['@thunderstorefront/api-mock'],
-
   future: {
     compatibilityVersion: 4
   },

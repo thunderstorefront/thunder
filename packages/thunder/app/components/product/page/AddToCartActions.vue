@@ -5,21 +5,19 @@ const props = defineProps<{
   product: ProductPage;
 }>();
 
-const { updateInput } = useAddToCartForm();
+const { setInput, updateInput } = useAddToCartForm();
 
 const quantity = ref(1);
 
-function setAddToCartInput() {
-  updateInput({
-    quantity: quantity.value,
-    productId: props.product.id
-  });
-}
+const payload = computed(() => ({
+  quantity: quantity.value,
+  productId: props.product.id
+}));
 
-setAddToCartInput();
+setInput(payload.value);
 
-watch(quantity, () => {
-  setAddToCartInput();
+watch(payload, () => {
+  updateInput(payload.value);
 });
 </script>
 

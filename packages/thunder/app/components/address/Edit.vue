@@ -30,7 +30,7 @@ const saveAsBilling = ref(currentAddress?.defaultBilling ?? false);
 const saveAsShipping = ref(currentAddress?.defaultShipping ?? false);
 
 function navigateToAddressesList() {
-  navigateTo(localePath(paths.accountAddressList));
+  navigateTo(localePath(ROUTES.accountAddressList));
 }
 
 function updateAddress(address: Address) {

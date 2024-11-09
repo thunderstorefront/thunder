@@ -9,7 +9,7 @@ function directToSearch() {
   }
 
   navigateTo({
-    path: localePath(paths.search),
+    path: localePath(ROUTES.search),
     query: {
       query: search.value
     }

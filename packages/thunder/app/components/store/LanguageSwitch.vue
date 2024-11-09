@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables';
-
 const switchLocalePath = useSwitchLocalePath();
 const { locale, locales } = useI18n();
 
 const availableLocales = computed(() =>
-  locales.value
-    .filter((item) => item instanceof Object && !Array.isArray(item))
-    .map((item) => item as LocaleObject)
+  locales.value.filter((item) => item instanceof Object && !Array.isArray(item))
 );
 
 const flags: Record<string, string> = {
