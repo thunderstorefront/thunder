@@ -16,7 +16,8 @@
     "tailwind.config.ts",
     "app",
     "public",
-    "server"
+    "server",
+    "i18n"
   ],
   "scripts": {
     "dev": "nuxi dev .playground",
@@ -47,7 +48,7 @@
     "@nuxt/image": "1.8.1",
     "@nuxt/ui": "^2.18.7",
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/i18n": "^8.5.5",
+    "@nuxtjs/i18n": "^9.0.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.15",
