@@ -1,37 +1,39 @@
 export default defineNuxtPlugin(async (): Promise<void> => {
   const sdkConfig = useRuntimeConfig().public.thunderSdk;
   const config = useRuntimeConfig().public.thunder;
+
   const cartToken = useCookie(sdkConfig.cartToken);
   const customerToken = useCookie(sdkConfig.authToken);
   const storeToken = useCookie(sdkConfig.storeToken);
   const isReloaded = useCookie(config.reloadedToken);
-  const { storeConfig, fetchStoresConfig, fetchStoreConfig } = useStoreConfig();
-  const { customer, fetchCustomer } = useCustomer();
-  const { cart, createEmptyCart, fetchCart } = useCart();
+
+  const {
+    storeConfig,
+    fetchStoresConfig,
+    fetchStoreConfig,
+    updateStoreConfig
+  } = useStoreConfig();
+  const { updateCustomer } = useCustomer();
+  const { cart, createEmptyCart, fetchCart, updateCart } = useCart();
 
   const handleInitError = () => {
-    if (import.meta.client) {
-      if (!isReloaded.value) {
-        clearAllCookies();
-        window.location.reload();
-        isReloaded.value = 'true';
-      }
+    if (import.meta.client && !isReloaded.value) {
+      clearAllCookies();
+      isReloaded.value = 'true';
+      window.location.reload();
     }
   };
 
   if (storeToken.value) {
-    const { data } = await useAsyncData(
-      `storeConfigData-${storeToken.value}`,
-      () => fetchStoreConfig(storeToken.value as string)
+    await useAsyncData(`storeConfig-${storeToken.value}`, () =>
+      updateStoreConfig(storeToken.value as string)
     );
-
-    storeConfig.value = data.value;
   } else {
     const { data } = await useAsyncData('storesConfigData', () =>
       fetchStoresConfig()
     );
 
-    if (!data.value?.[0]) {
+    if (!data.value || !data.value[0]) {
       handleInitError();
       return;
     }
@@ -41,11 +43,9 @@ export default defineNuxtPlugin(async (): Promise<void> => {
   }
 
   if (cartToken.value) {
-    const { data } = await useAsyncData(`cartData-${cartToken.value}`, () =>
-      fetchCart(cartToken.value as string)
+    await useAsyncData(`cart-${cartToken.value}`, () =>
+      updateCart(cartToken.value as string)
     );
-
-    cart.value = data.value;
   } else {
     const { data } = await useAsyncData('createCart', () => createEmptyCart());
 
@@ -59,8 +59,6 @@ export default defineNuxtPlugin(async (): Promise<void> => {
   }
 
   if (customerToken.value) {
-    const { data } = await useAsyncData('customer', () => fetchCustomer());
-
-    customer.value = data.value;
+    await useAsyncData('customer', () => updateCustomer());
   }
 });

@@ -44,7 +44,7 @@ async function handleLogin() {
     await mergeUserCart();
 
     navigateTo({
-      path: localePath(paths.account)
+      path: localePath(ROUTES.account)
     });
   } catch (error) {
     showError(error);
@@ -101,7 +101,7 @@ async function handleLogin() {
     </form>
     <p class="text-base text-gray-400">
       {{ $t('messages.account.notAMember') }}
-      <NuxtLink :to="localePath(paths.authSignup)" title="Sign up">
+      <NuxtLink :to="localePath(ROUTES.authSignup)" title="Sign up">
         {{ $t('messages.account.signUp') }}
       </NuxtLink>
     </p>

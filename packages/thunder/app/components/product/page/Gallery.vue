@@ -31,7 +31,7 @@ setPreviewImage('');
       />
       <NuxtImg
         v-else
-        :src="galleryItems[activeImageIndex].url ?? ''"
+        :src="galleryItems[activeImageIndex]?.url ?? ''"
         class="h-full w-full object-contain"
       />
     </div>

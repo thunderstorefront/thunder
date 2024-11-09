@@ -3,6 +3,7 @@ import type { Wishlist, WishlistListInput } from '@thunderstorefront/types';
 export interface UseWishlist {
   wishlist: Ref<Wishlist | null>;
   fetchWishlist: (input?: WishlistListInput) => Promise<Wishlist>;
+  updateWishlist: (input?: WishlistListInput) => Promise<Wishlist>;
   addProductToWishlist: (productId: string) => Promise<Wishlist>;
   removeProductFromWishlist: (productId: string) => Promise<Wishlist>;
 }
@@ -15,6 +16,11 @@ export function useWishlist(): UseWishlist {
     return await client(`/api/wishlist`, {
       query: input
     });
+  }
+
+  async function updateWishlist(input?: WishlistListInput): Promise<Wishlist> {
+    wishlist.value = await fetchWishlist(input);
+    return wishlist.value;
   }
 
   async function addProductToWishlist(productId: string): Promise<Wishlist> {
@@ -40,6 +46,7 @@ export function useWishlist(): UseWishlist {
   return {
     wishlist,
     fetchWishlist,
+    updateWishlist,
     addProductToWishlist,
     removeProductFromWishlist
   };

@@ -3,6 +3,6 @@ export default defineNuxtRouteMiddleware(() => {
   const { customer } = useCustomer();
 
   if (!customer.value) {
-    return navigateTo({ path: localePath(paths.authLogin) });
+    return navigateTo({ path: localePath(ROUTES.authLogin) });
   }
 });

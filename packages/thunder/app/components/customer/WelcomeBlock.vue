@@ -11,7 +11,7 @@ async function handleLogout() {
     await logout();
     cart.value = await createEmptyCart();
     navigateTo({
-      path: localePath(paths.home)
+      path: localePath(ROUTES.home)
     });
   } catch (error) {
     showError(error);
@@ -28,7 +28,7 @@ async function handleLogout() {
           {{ customer.lastName }}
         </div>
         <div class="flex gap-4">
-          <NuxtLink :to="localePath(paths.account)">
+          <NuxtLink :to="localePath(ROUTES.account)">
             <UButton
               color="white"
               :label="$t('messages.account.yourAccount')"
@@ -64,7 +64,7 @@ async function handleLogout() {
           />
         </div>
         <div class="flex gap-4">
-          <NuxtLink :to="localePath(paths.authLogin)">
+          <NuxtLink :to="localePath(ROUTES.authLogin)">
             <UButton
               color="white"
               :label="$t('messages.account.signIn')"
@@ -72,7 +72,7 @@ async function handleLogout() {
               class="dark;text-white hover:text-black"
             />
           </NuxtLink>
-          <NuxtLink :to="localePath(paths.authSignup)">
+          <NuxtLink :to="localePath(ROUTES.authSignup)">
             <UButton
               color="white"
               :label="$t('messages.account.signUp')"

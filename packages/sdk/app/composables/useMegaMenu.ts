@@ -4,7 +4,8 @@ interface UseMegaMenu {
   megaMenu: Ref<MegaMenu | null>;
   menuItems: Ref<MegaMenuItem[]>;
   showMegaMenu: Ref<boolean>;
-  fetchMegaMenu: (categoryId: string) => Promise<MegaMenu>;
+  fetchMegaMenu: (rootCategoryId: string) => Promise<MegaMenu>;
+  updateMegaMenu: (rootCategoryId: string) => Promise<MegaMenu>;
 }
 
 export function useMegaMenu(): UseMegaMenu {
@@ -14,14 +15,20 @@ export function useMegaMenu(): UseMegaMenu {
 
   const menuItems = computed(() => megaMenu.value?.children ?? []);
 
-  async function fetchMegaMenu(categoryId: string): Promise<MegaMenu> {
-    return await client(`/api/category/${categoryId}`);
+  async function fetchMegaMenu(rootCategoryId: string): Promise<MegaMenu> {
+    return await client(`/api/category/${rootCategoryId}`);
+  }
+
+  async function updateMegaMenu(rootCategoryId: string): Promise<MegaMenu> {
+    megaMenu.value = await fetchMegaMenu(rootCategoryId);
+    return megaMenu.value;
   }
 
   return {
     megaMenu,
     menuItems,
     showMegaMenu,
-    fetchMegaMenu
+    fetchMegaMenu,
+    updateMegaMenu
   };
 }

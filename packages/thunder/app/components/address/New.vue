@@ -47,7 +47,7 @@ async function saveAddress() {
 
   showSuccess(t('messages.account.createAddressSuccess'));
   navigateTo({
-    path: localePath(paths.accountAddressList)
+    path: localePath(ROUTES.accountAddressList)
   });
 }
 </script>

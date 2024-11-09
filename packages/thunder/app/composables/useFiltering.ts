@@ -71,7 +71,7 @@ export function useFiltering(): UseFiltering {
 
     return query
       .split('],')
-      .flatMap((filter) => filter.split('[')[0]?.split(']'));
+      .flatMap((filter) => filter.split('[')[0]?.split(']')) as string[];
   }
 
   function getQueryFilters(): QueryFilter[] {

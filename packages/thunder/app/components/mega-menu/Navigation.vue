@@ -1,19 +1,15 @@
 <script lang="ts" setup>
 const localePath = useLocalePath();
-const { megaMenu, fetchMegaMenu, menuItems } = useMegaMenu();
+const { updateMegaMenu, menuItems } = useMegaMenu();
 const { storeConfig } = useStoreConfig();
 
 const rootCategory = storeConfig.value?.rootCategoryId ?? '';
 
-const { data } = await useAsyncData('megaMenu', () =>
-  fetchMegaMenu(rootCategory)
-);
-
-megaMenu.value = data.value;
+await useAsyncData('megaMenu', () => updateMegaMenu(rootCategory));
 </script>
 
 <template>
-  <div v-if="data" class="hidden lg:flex">
+  <div v-if="menuItems.length" class="hidden lg:flex">
     <div class="flex items-center gap-2 dark:text-white">
       <MegaMenuTrigger />
       <NuxtLink
@@ -26,6 +22,6 @@ megaMenu.value = data.value;
         <span>{{ category.title }}</span>
       </NuxtLink>
     </div>
-    <MegaMenuList :mega-menu="data" />
+    <MegaMenuList />
   </div>
 </template>

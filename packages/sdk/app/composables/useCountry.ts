@@ -4,6 +4,7 @@ export interface UseCountry {
   countries: Ref<Country[]>;
   findCountry: (countryCode: string) => Promise<Country>;
   fetchCountries: () => Promise<Country[]>;
+  updateCountries: () => Promise<Country[]>;
 }
 
 export function useCountry(): UseCountry {
@@ -15,8 +16,6 @@ export function useCountry(): UseCountry {
   }
 
   async function findCountry(countryCode: string): Promise<Country> {
-    countries.value = await fetchCountries();
-
     const country = countries.value.find(
       (country) => country?.twoLetterAbbreviation === countryCode
     );
@@ -28,9 +27,15 @@ export function useCountry(): UseCountry {
     return country;
   }
 
+  async function updateCountries(): Promise<Country[]> {
+    countries.value = await fetchCountries();
+    return countries.value;
+  }
+
   return {
     countries,
     findCountry,
-    fetchCountries
+    fetchCountries,
+    updateCountries
   };
 }

@@ -42,7 +42,9 @@ const localePath = useLocalePath();
         </div>
       </BaseTypography>
       <div class="mt-4">
-        <NuxtLink :to="localePath(`${paths.accountAddressEdit}/${address.id}`)">
+        <NuxtLink
+          :to="localePath(`${ROUTES.accountAddressEdit}/${address.id}`)"
+        >
           <UButton
             :padded="false"
             color="primary"

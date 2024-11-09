@@ -8,6 +8,7 @@ import type {
 export interface UseCustomer {
   customer: Ref<Customer | null>;
   fetchCustomer: () => Promise<Customer>;
+  updateCustomer: () => Promise<Customer>;
   fetchCustomerCart: () => Promise<Cart>;
   registerCustomer: (input: RegisterAccountInput) => Promise<Customer>;
   changeCustomerPassword: (
@@ -24,6 +25,11 @@ export function useCustomer(): UseCustomer {
 
   async function fetchCustomer(): Promise<Customer> {
     return await client('/api/account/customer');
+  }
+
+  async function updateCustomer(): Promise<Customer> {
+    customer.value = await fetchCustomer();
+    return customer.value;
   }
 
   async function registerCustomer(
@@ -74,8 +80,9 @@ export function useCustomer(): UseCustomer {
 
   return {
     customer,
-    registerCustomer,
     fetchCustomer,
+    updateCustomer,
+    registerCustomer,
     fetchCustomerCart,
     changeCustomerPassword,
     changeCustomerEmail,

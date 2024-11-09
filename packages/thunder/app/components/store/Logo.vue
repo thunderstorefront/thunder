@@ -5,7 +5,7 @@ const logoUrl = useRuntimeConfig().public.thunder.logo;
 
 <template>
   <NuxtLink
-    :to="localePath(paths.home)"
+    :to="localePath(ROUTES.home)"
     class="flex w-[130px] items-center px-4 py-1 dark:rounded-lg dark:bg-white"
     tabindex="-1"
     title="Homepage"

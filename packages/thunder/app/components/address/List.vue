@@ -23,7 +23,7 @@ const { data: addresses } = await useAsyncData('customerAddresses', () =>
         />
       </div>
       <div>
-        <NuxtLink :to="localePath(paths.accountAddressNew)">
+        <NuxtLink :to="localePath(ROUTES.accountAddressNew)">
           <UButton
             color="primary"
             size="xl"

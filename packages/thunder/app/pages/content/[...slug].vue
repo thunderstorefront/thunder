@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const route = useRoute();
+const { params } = useRoute();
 const { fetchPage } = usePage();
 const { fetchRoute } = useStoreRoute();
 
 const pageId = ref<string>('');
-const url = [...route.params.slug].join('/');
+const url = [...(params.slug ?? '')].join('/');
 
 const { data: routeData } = await useAsyncData('storeRouteData', () =>
   fetchRoute(url)

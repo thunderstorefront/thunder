@@ -3,6 +3,7 @@ import type { Cart, SetBillingAddressInput } from '@thunderstorefront/types';
 export interface UseCart {
   cart: Ref<Cart | null>;
   fetchCart: (cartId: string) => Promise<Cart>;
+  updateCart: (cartId: string) => Promise<Cart>;
   createEmptyCart: () => Promise<Cart>;
   mergeCarts: (
     sourceCartId: string,
@@ -32,6 +33,11 @@ export function useCart(): UseCart {
         cartId
       }
     });
+  }
+
+  async function updateCart(cartId: string): Promise<Cart> {
+    cart.value = await fetchCart(cartId);
+    return cart.value;
   }
 
   async function mergeCarts(
@@ -76,7 +82,7 @@ export function useCart(): UseCart {
   async function setBillingAddress(
     input: SetBillingAddressInput
   ): Promise<Cart> {
-    return await client(`/api/cart/set-billingAddress`, {
+    return await client(`/api/cart/set-billing-address`, {
       method: 'POST',
       body: input
     });
@@ -111,6 +117,7 @@ export function useCart(): UseCart {
   return {
     cart,
     fetchCart,
+    updateCart,
     createEmptyCart,
     mergeCarts,
     setGuestEmailToCart,

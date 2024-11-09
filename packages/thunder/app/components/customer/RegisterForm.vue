@@ -43,7 +43,7 @@ async function submitRegister() {
   loading.value = false;
 
   navigateTo({
-    path: localePath(paths.account)
+    path: localePath(ROUTES.account)
   });
 }
 </script>
@@ -117,7 +117,7 @@ async function submitRegister() {
     </form>
     <p class="text-base text-gray-400">
       {{ $t('messages.account.alreadyHaveAccount') }}
-      <NuxtLink :to="localePath(paths.authLogin)" title="Login">
+      <NuxtLink :to="localePath(ROUTES.authLogin)" title="Login">
         {{ $t('messages.account.signInToYourAccount') }}
       </NuxtLink>
     </p>

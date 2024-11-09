@@ -30,7 +30,7 @@ const localePath = useLocalePath();
       {{ $t('messages.shop.includingVat') }}
     </BaseTypography>
     <div class="my-6">
-      <NuxtLink :to="localePath(paths.checkout)">
+      <NuxtLink :to="localePath(ROUTES.checkout)">
         <UButton
           color="primary"
           variant="solid"
