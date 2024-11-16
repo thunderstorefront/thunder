@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Address, Region } from '@thunderstorefront/types';
+import type { Address } from '@thunderstorefront/types';
 
 const props = defineProps<{
   address: Address;
@@ -16,7 +16,6 @@ const { getRegions } = useRegion();
 
 await useAsyncData('countries', () => updateCountries());
 
-const regions = ref<Region[]>([]);
 const formData = reactive<Address>({ ...props.address });
 const errors = reactive({
   firstName: '',
@@ -41,7 +40,7 @@ function validateForm() {
   errors.postcode = !formData.postcode ? message : '';
   errors.telephone = !formData.telephone ? message : '';
 
-  if (regions.value.length) {
+  if (regions.value?.length) {
     errors.region = regions.value.length && !formData.region ? message : '';
   }
 
@@ -57,10 +56,11 @@ function handleSubmitForm() {
   validated.value = true;
 }
 
-watch(
-  () => formData.country,
-  async () => {
-    regions.value = await getRegions(formData.country);
+const { data: regions } = useAsyncData(
+  'regions',
+  () => getRegions(formData.country),
+  {
+    watch: [() => formData.country]
   }
 );
 </script>
@@ -162,7 +162,7 @@ watch(
       class="mb-4"
     />
     <FormSelect
-      v-if="regions.length"
+      v-if="regions?.length"
       :id="'fRegion'"
       v-model="formData.region"
       :error="validated ? errors.region : ''"

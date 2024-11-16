@@ -3,6 +3,7 @@ import type { LoginUserInput } from '@thunderstorefront/types';
 
 const localePath = useLocalePath();
 const { login } = useCustomerLogin();
+const { onLogin } = useAuth();
 const { customer, fetchCustomer } = useCustomer();
 const { showError } = useUiErrorHandler();
 const { setCartId, getCartId } = useCartToken();
@@ -16,7 +17,8 @@ const formData = reactive<LoginUserInput>({
 const isLoading = ref(false);
 
 async function loginUser() {
-  await login(formData);
+  const customerToken = await login(formData);
+  await onLogin(customerToken);
   customer.value = await fetchCustomer();
 }
 

@@ -1,15 +1,17 @@
 <script lang="ts" setup>
-import type { ProductPage } from '@thunderstorefront/types';
+import type { Product } from '@thunderstorefront/types';
 
 const props = defineProps<{
-  product: ProductPage;
+  product: Product;
 }>();
 
 const { t } = useI18n();
-const { errors, input } = useAddToCartForm();
+const { errors, inputs } = useAddToCartForm();
 const { addItemAndUpdateCart } = useCartItem();
 const { showSuccess, showNotification } = useUiNotification();
 const { showError } = useUiErrorHandler();
+
+const input = computed(() => inputs.value[props.product.id] ?? null);
 
 async function submitAddToCartForm(): Promise<void> {
   if (errors.value.length) {
@@ -17,9 +19,10 @@ async function submitAddToCartForm(): Promise<void> {
     return;
   }
 
-  try {
-    await addItemAndUpdateCart(input.value);
+  if (!input.value) return;
 
+  try {
+    await addItemAndUpdateCart([input.value]);
     showSuccess(
       t('messages.shop.productAddedToCart').replace('%1', props.product.title)
     );

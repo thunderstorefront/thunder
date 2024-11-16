@@ -49,7 +49,7 @@ const price = computed(() => props.product.priceRange);
             </template>
           </UButton>
         </div>
-        <div class="absolute bottom-2 left-2 z-10">
+        <div v-if="product.reviewCount" class="absolute bottom-2 left-2 z-10">
           <StarRating :value="product.ratingSummary" :size="'16px'" />
         </div>
         <div>
@@ -61,14 +61,6 @@ const price = computed(() => props.product.priceRange);
             quality="100"
             loading="lazy"
             class="mx-auto h-[200px] w-auto object-contain md:h-[250px] xl:h-[300px]"
-          />
-        </div>
-        <div class="absolute bottom-2 left-2">
-          <StarRating
-            v-if="hover"
-            :value="product.ratingSummary"
-            :size="'12px'"
-            class="mr-2"
           />
         </div>
       </div>

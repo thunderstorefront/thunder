@@ -2,52 +2,52 @@
 const localePath = useLocalePath();
 const brands = [
   {
-    url: '/images/brands/apple.png',
+    url: '/images/brands/apple.webp',
     label: 'Apple',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/samsung.png',
+    url: '/images/brands/samsung.webp',
     label: 'Samsung',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/sony.png',
+    url: '/images/brands/sony.webp',
     label: 'Sony',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/lg.png',
+    url: '/images/brands/lg.webp',
     label: 'LG',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/hp.png',
+    url: '/images/brands/hp.webp',
     label: 'HP',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/dell.png',
+    url: '/images/brands/dell.webp',
     label: 'Dell',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/microsoft.png',
+    url: '/images/brands/microsoft.webp',
     label: 'Microsoft',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/intel.png',
+    url: '/images/brands/intel.webp',
     label: 'Intel',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/lenovo.png',
+    url: '/images/brands/lenovo.webp',
     label: 'Lenovo',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
-    url: '/images/brands/philips.png',
+    url: '/images/brands/philips.webp',
     label: 'Philips',
     path: localePath(getCategoryPath('electronics/mobile-phones'))
   }

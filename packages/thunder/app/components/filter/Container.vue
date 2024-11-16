@@ -1,5 +1,16 @@
 <script lang="ts" setup>
 const isOpen = ref(false);
+const content = ref();
+const isMaxHeight = ref(false);
+const contentMaxHeight = 1000;
+
+const checkOverflow = () => {
+  isMaxHeight.value = content.value.scrollHeight > 1000;
+};
+
+onMounted(() => {
+  checkOverflow();
+});
 </script>
 
 <template>
@@ -7,7 +18,30 @@ const isOpen = ref(false);
     <div
       class="hidden rounded-lg bg-white p-4 text-gray-800 shadow-sm lg:block dark:text-gray-100 lg:dark:bg-gray-700"
     >
-      <slot />
+      <div
+        class="relative overflow-hidden"
+        :style="{ 'max-height': contentMaxHeight + 'px' }"
+      >
+        <div ref="content">
+          <slot />
+        </div>
+        <div
+          v-if="isMaxHeight"
+          class="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-white"
+        ></div>
+      </div>
+      <div class="mt-2 pb-2">
+        <UButton
+          color="primary"
+          size="lg"
+          variant="link"
+          :label="$t('messages.shop.filters')"
+          block
+          @click="isOpen = !isOpen"
+        >
+          {{ $t('messages.shop.showMore') }}
+        </UButton>
+      </div>
     </div>
 
     <span

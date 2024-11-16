@@ -4,24 +4,26 @@ const options: ProductOption[] = [
   {
     id: '1',
     name: 'Storage Capacity',
+    code: '1',
     values: [
-      { id: '1-1', label: '64GB' },
-      { id: '1-2', label: '128GB' },
-      { id: '1-3', label: '256GB' },
-      { id: '1-4', label: '512GB' },
-      { id: '1-5', label: '1TB' }
+      { id: '1-1', label: '64GB', code: '1-1' },
+      { id: '1-2', label: '128GB', code: '1-2' },
+      { id: '1-3', label: '256GB', code: '1-3' },
+      { id: '1-4', label: '512GB', code: '1-4' },
+      { id: '1-5', label: '1TB', code: '1-5' }
     ]
   },
   {
     id: '2',
     name: 'Color',
+    code: '2',
     values: [
-      { id: '2-1', label: 'Black', hexColor: '#000000' },
-      { id: '2-2', label: 'Silver', hexColor: '#C0C0C0' },
-      { id: '2-3', label: 'Gold', hexColor: '#FFD700' },
-      { id: '2-4', label: 'Blue', hexColor: '#1D4ED8' },
-      { id: '2-5', label: 'Green', hexColor: '#34D399' },
-      { id: '2-6', label: 'Purple', hexColor: '#6B21A8' }
+      { id: '2-1', label: 'Black', code: '2-1' },
+      { id: '2-2', label: 'Silver', code: '2-2' },
+      { id: '2-3', label: 'Gold', code: '2-3' },
+      { id: '2-4', label: 'Blue', code: '2-4' },
+      { id: '2-5', label: 'Green', code: '2-5' },
+      { id: '2-6', label: 'Purple', code: '2-6' }
     ]
   }
 ];
@@ -336,6 +338,47 @@ export const products: ProductPage[] = [
     options: [],
     ratingSummary: 50,
     reviewCount: 12,
+    inStock: true,
+    metadata: {},
+    categories: []
+  },
+  {
+    type: 'SimpleProduct',
+    title: 'Mocked Dell XPS 13"',
+    image: {
+      url: '/images/products/laptop/dell-xps.webp',
+      label: 'Mocked Dell XPS 13" Front View'
+    },
+    thumbnail: {
+      url: '/images/products/laptop/dell-xps.webp',
+      label: 'Mocked Dell XPS 13" Thumbnail'
+    },
+    mediaGallery: [
+      {
+        url: '/images/products/laptop/dell-xps.webp',
+        label: 'Mocked Dell XPS 13" Front View'
+      }
+    ],
+    slug: 'mocked-dell-xps-13',
+    id: 'DXPS13-1TB-SIL',
+    shortDescription:
+      'Mocked Dell XPS 13" with Intel i7 processor and 1TB SSD.',
+    description:
+      'This is a mock product for the Dell XPS 13", featuring an Intel Core i7 processor, a 13.4-inch InfinityEdge display, and 16GB of RAM.',
+    priceRange: {
+      minPrice: {
+        currency: 'USD',
+        value: 1499
+      },
+      maxPrice: {
+        currency: 'USD',
+        value: 1999
+      }
+    },
+    variants: [],
+    options: [],
+    ratingSummary: 0,
+    reviewCount: 0,
     inStock: true,
     metadata: {},
     categories: []

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const props = defineProps<{
+defineProps<{
   productSlug: string;
 }>();
 
@@ -7,12 +7,7 @@ const { fetchProducts } = useProduct();
 
 const { data } = await useAsyncData('upsell-products', () =>
   fetchProducts({
-    filters: {
-      productSlug: {
-        eq: props.productSlug
-      }
-    },
-    pageSize: 4
+    pageSize: 8
   })
 );
 </script>

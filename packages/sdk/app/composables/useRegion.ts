@@ -5,21 +5,18 @@ export interface UseRegion {
 }
 
 export function useRegion(): UseRegion {
-  const loading = useState<boolean>('regionsLoading', () => false);
-  const { findCountry } = useCountry();
+  const { countries, findCountry, updateCountries } = useCountry();
 
   async function getRegions(countryCode: string): Promise<Region[]> {
-    try {
-      loading.value = true;
-
-      const country = await findCountry(countryCode);
-
-      if (!country) throw new Error('Region cannot be found');
-
-      return country.availableRegions;
-    } finally {
-      loading.value = false;
+    if (countries.value.length === 0) {
+      await updateCountries();
     }
+
+    const country = await findCountry(countryCode);
+
+    if (!country) throw new Error('Region cannot be found');
+
+    return country.availableRegions;
   }
 
   return {

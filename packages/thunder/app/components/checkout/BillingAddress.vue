@@ -4,7 +4,7 @@ import type { Address } from '@thunderstorefront/types';
 const { cart } = useCart();
 const { setBillingAddress } = useCart();
 const { billingAddress } = useCheckout();
-const { getCartId } = useCartToken();
+const { token } = useCartToken();
 const { showError } = useUiErrorHandler();
 const loading = ref(false);
 
@@ -16,7 +16,7 @@ const emit = defineEmits<{ 'set-billing-address': [] }>();
 async function updateBillingAddress(address: Address) {
   loading.value = true;
   const data = await setBillingAddress({
-    cartId: getCartId(),
+    cartId: token.value ?? '',
     address: {
       firstname: address.firstName,
       lastname: address.lastName,

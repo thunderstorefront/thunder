@@ -24,7 +24,7 @@ export type CartBillingAddress = Address;
 
 export type CartShippingAddress = {
   availableShippingMethods: AvailableShippingMethod[];
-  selectedShippingMethod: ShippingMethod;
+  selectedShippingMethod: ShippingMethod | null;
 };
 
 export type CartItemPrices = {

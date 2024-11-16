@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-import type { ProductPage } from '@thunderstorefront/types';
+import type { Product } from '@thunderstorefront/types';
 
 const props = defineProps<{
-  product: ProductPage;
+  product: Product;
 }>();
 
-const { setInput, updateInput } = useAddToCartForm();
+const { inputs, setInput, updateInput } = useAddToCartForm();
 
-const quantity = ref(1);
+const input = computed(() => inputs.value[props.product.id] ?? null);
+
+const quantity = ref(input.value?.quantity ?? 1);
 
 const payload = computed(() => ({
   quantity: quantity.value,
@@ -17,7 +19,7 @@ const payload = computed(() => ({
 setInput(payload.value);
 
 watch(payload, () => {
-  updateInput(payload.value);
+  updateInput(props.product.id, payload.value);
 });
 </script>
 

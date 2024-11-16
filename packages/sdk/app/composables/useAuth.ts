@@ -1,23 +1,33 @@
+import type { Ref } from 'vue';
+
 export interface UseAuth {
   token: Ref<string | null>;
-  onLogin: (tokenData: string) => void;
-  onLogout: () => void;
+  onLogin: (tokenData: string) => Promise<void>;
+  onLogout: () => Promise<void>;
 }
 
 export function useAuth(): UseAuth {
   const authTokenKey = useRuntimeConfig().public.thunderSdk.authToken;
-  const authToken = useCookie(authTokenKey);
+  const cookie = useCookie(authTokenKey);
+  const authToken = useState<string | null>(
+    'authToken',
+    () => cookie.value ?? null
+  );
 
-  function onLogin(tokenData: string): void {
+  async function onLogin(tokenData: string): Promise<void> {
     authToken.value = tokenData;
+    cookie.value = tokenData;
+    await nextTick();
   }
 
-  function onLogout(): void {
-    authToken.value = '';
+  async function onLogout(): Promise<void> {
+    authToken.value = null;
+    cookie.value = null;
+    await nextTick();
   }
 
   return {
-    token: computed(() => authToken.value ?? null),
+    token: authToken,
     onLogin,
     onLogout
   };
