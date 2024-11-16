@@ -3,7 +3,10 @@ import type { ProductPage } from '@thunderstorefront/types';
 
 const props = defineProps<{ product: ProductPage }>();
 
-const { setInput } = useAddToCartForm();
+const route = useRoute();
+const { inputs, setInput } = useAddToCartForm();
+
+const input = computed(() => inputs.value[props.product.id] ?? null);
 
 const selectedOptions = ref<Record<string, string>>({});
 
@@ -11,10 +14,35 @@ function selectOption(optionId: string, valueId: string): void {
   selectedOptions.value = { ...selectedOptions.value, [optionId]: valueId };
   setInput({
     productId: props.product.id,
-    quantity: 1,
+    quantity: input.value?.quantity ?? 1,
     options: selectedOptions.value
   });
 }
+
+function selectQueryOptions() {
+  const selectedVariants = (route.query?.variant as string | undefined)?.split(
+    ','
+  );
+
+  if (!selectedVariants) return;
+
+  props.product.options.forEach((option) => {
+    const value = option.values.find((value) =>
+      selectedVariants.includes(value.code.toLowerCase())
+    );
+
+    if (value) {
+      selectOption(option.id, value.id);
+    }
+  });
+}
+
+watch(
+  () => route.query,
+  () => {
+    selectQueryOptions();
+  }
+);
 </script>
 
 <template>
@@ -31,8 +59,7 @@ function selectOption(optionId: string, valueId: string): void {
             'rounded-lg border px-4 py-2 text-sm',
             selectedOptions[option.id] === value.id
               ? 'border-blue-600 bg-blue-600 text-white'
-              : 'border-gray-300 bg-white text-gray-800',
-            value.hexColor ? `bg-[${value.hexColor}]` : ''
+              : 'border-gray-300 bg-white text-gray-800'
           ]"
           @click.prevent="selectOption(option.id, value.id)"
         >

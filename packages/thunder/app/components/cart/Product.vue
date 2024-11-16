@@ -34,9 +34,9 @@ const imgHeight = 80;
         </BaseTypography>
 
         <BaseTypography variant="caption" color="text-gray-800">
-          <p v-if="product.description">
-            <span v-html="product.description" />
-          </p>
+          <div>
+            {{ product.shortDescription }}
+          </div>
         </BaseTypography>
       </div>
       <div

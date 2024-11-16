@@ -1,9 +1,11 @@
 import type { Cart, SetBillingAddressInput } from '@thunderstorefront/types';
+import type { Ref } from 'vue';
 
 export interface UseCart {
   cart: Ref<Cart | null>;
   fetchCart: (cartId: string) => Promise<Cart>;
   updateCart: (cartId: string) => Promise<Cart>;
+  resetCart: () => Promise<Cart>;
   createEmptyCart: () => Promise<Cart>;
   mergeCarts: (
     sourceCartId: string,
@@ -18,6 +20,7 @@ export interface UseCart {
 
 export function useCart(): UseCart {
   const cart = useState<Cart | null>('cart', () => null);
+  const { setCartId } = useCartToken();
   const client = useClient();
 
   async function createEmptyCart(): Promise<Cart> {
@@ -40,6 +43,12 @@ export function useCart(): UseCart {
     return cart.value;
   }
 
+  async function resetCart(): Promise<Cart> {
+    cart.value = await createEmptyCart();
+    setCartId(cart.value.id);
+    return cart.value;
+  }
+
   async function mergeCarts(
     sourceCartId: string,
     destinationCartId: string
@@ -59,7 +68,7 @@ export function useCart(): UseCart {
   ): Promise<Cart> {
     return await client(`/api/cart/set-guest-email`, {
       method: 'POST',
-      query: {
+      body: {
         cartId,
         email
       }
@@ -72,7 +81,7 @@ export function useCart(): UseCart {
   ): Promise<Cart> {
     return await client(`/api/cart/discount/apply`, {
       method: 'POST',
-      query: {
+      body: {
         cartId,
         code
       }
@@ -92,7 +101,7 @@ export function useCart(): UseCart {
     cartId: string,
     method: string
   ): Promise<Cart> {
-    return await client(`/api/cart/set-billing-address`, {
+    return await client(`/api/cart/set-payment-method`, {
       method: 'POST',
       body: {
         cartId,
@@ -118,6 +127,7 @@ export function useCart(): UseCart {
     cart,
     fetchCart,
     updateCart,
+    resetCart,
     createEmptyCart,
     mergeCarts,
     setGuestEmailToCart,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { cart, createEmptyCart } = useCart();
+const { cart, resetCart } = useCart();
 const { customer } = useCustomer();
 const { billingAddress, selectedPaymentMethod, selectedShippingMethod } =
   useCheckout();
@@ -43,7 +43,7 @@ async function payNow() {
     isOrderProcessing.value = true;
 
     await placeOrder();
-    cart.value = await createEmptyCart();
+    await resetCart();
     await navigateTo({
       path: localePath(ROUTES.checkoutSuccess)
     });

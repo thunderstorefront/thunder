@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { customer } = useCustomer();
 const { logout } = useCustomerLogin();
-const { cart, createEmptyCart } = useCart();
+const { resetCart } = useCart();
 const localePath = useLocalePath();
 
 const { showError } = useUiErrorHandler();
@@ -9,7 +9,7 @@ const { showError } = useUiErrorHandler();
 async function handleLogout() {
   try {
     await logout();
-    cart.value = await createEmptyCart();
+    await resetCart();
     navigateTo({
       path: localePath(ROUTES.home)
     });

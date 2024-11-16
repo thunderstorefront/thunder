@@ -12,6 +12,19 @@ export type PriceRange = {
   maxPrice?: Money;
 };
 
+export type ProductOptionValue = {
+  id: string;
+  label: string;
+  code: string;
+};
+
+export type ProductOption = {
+  code: string;
+  id: string;
+  name: string;
+  values: ProductOptionValue[];
+};
+
 export type ProductVariant = {
   id: string;
   title: string;
@@ -19,18 +32,6 @@ export type ProductVariant = {
   thumbnail: Image;
   priceRange: PriceRange;
   inStock: boolean;
-};
-
-export type ProductOptionValue = {
-  id: string;
-  label: string;
-  hexColor?: string;
-};
-
-export type ProductOption = {
-  id: string;
-  name: string;
-  values: ProductOptionValue[];
 };
 
 export type Product = {
@@ -51,10 +52,12 @@ export type Product = {
   metadata: Record<string, unknown>;
 };
 
-export type ProductPage = Product & {
+export type ProductPageExtension = {
   mediaGallery: Image[];
   categories: Category[];
 };
+
+export type ProductPage = Product & ProductPageExtension;
 
 export type ProductList = {
   items: Product[];

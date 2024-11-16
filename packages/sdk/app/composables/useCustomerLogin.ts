@@ -1,16 +1,16 @@
 import type { LoginUserInput } from '@thunderstorefront/types';
 
 export interface UseCustomerLogin {
-  login: (input: LoginUserInput) => Promise<void>;
+  login: (input: LoginUserInput) => Promise<string>;
   logout: () => Promise<void>;
 }
 
 export function useCustomerLogin(): UseCustomerLogin {
   const client = useClient();
-  const { onLogin, onLogout } = useAuth();
   const { customer } = useCustomer();
+  const { onLogout } = useAuth();
 
-  async function login(input: LoginUserInput): Promise<void> {
+  async function login(input: LoginUserInput): Promise<string> {
     const response = await client<{ token: string }>('/api/account/login', {
       method: 'POST',
       body: input
@@ -20,20 +20,15 @@ export function useCustomerLogin(): UseCustomerLogin {
       throw new Error('The user cannot log in.');
     }
 
-    onLogin(`Bearer ${response.token}`);
+    return response.token;
   }
 
   async function logout(): Promise<void> {
-    const response = await client('/api/account/logout', {
+    await client('/api/account/logout', {
       method: 'POST'
     });
-
-    if (!response) {
-      throw new Error('The user cannot logged out.');
-    }
-
+    await onLogout();
     customer.value = null;
-    onLogout();
   }
 
   return {

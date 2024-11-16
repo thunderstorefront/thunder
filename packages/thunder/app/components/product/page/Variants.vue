@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import type { ProductPage } from '@thunderstorefront/types';
+import type { ProductPage, ProductVariant } from '@thunderstorefront/types';
 
 const props = defineProps<{ product: ProductPage }>();
 
-const { productPath } = useProductCard(props.product);
+const localePath = useLocalePath();
+
+const { setPreviewImage } = usePreviewImage();
+
+const getVariantPath = (variant: ProductVariant) => {
+  return localePath(
+    getProductPath(
+      `${props.product.slug}?variant=${extractOptionsFromInput(props.product.slug, variant.slug)}`
+    )
+  );
+};
+
+function selectVariant(variant: ProductVariant) {
+  setPreviewImage(variant.thumbnail.url);
+  navigateTo(getVariantPath(variant));
+}
 </script>
 
 <template>
@@ -15,9 +30,10 @@ const { productPath } = useProductCard(props.product);
       <NuxtLink
         v-for="variant in product.variants"
         :key="variant.id"
-        :to="productPath"
+        :to="getVariantPath(variant)"
         :class="{ 'hover:cursor-pointer': !variant.inStock }"
         class="w-20"
+        @click.prevent="selectVariant(variant)"
       >
         <div
           class="flex rounded-lg border border-gray-200 bg-white p-2"

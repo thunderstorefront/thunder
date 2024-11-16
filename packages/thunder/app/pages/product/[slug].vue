@@ -32,7 +32,7 @@ useHead({
       <ProductPageGallery :product="product" />
     </template>
     <template #info>
-      <ProductPageAddToCartForm :product="product" class="lg:pl-6">
+      <ProductAddToCartForm :product="product" class="lg:pl-6">
         <ProductPageInfo :product="product">
           <template #title>
             <ProductPageBreadcrumbs :product="product" class="mb-6" />
@@ -63,17 +63,17 @@ useHead({
             <ProductPageVariants :product="product" class="mb-6" />
           </template>
           <template #add-to-cart>
-            <ProductPageAddToCartActions :product="product">
+            <ProductAddToCartActions :product="product">
               <template #secondary-actions>
                 <ProductAddToWishlist
                   :product-title="product.title"
                   :product-id="product.id"
                 />
               </template>
-            </ProductPageAddToCartActions>
+            </ProductAddToCartActions>
           </template>
         </ProductPageInfo>
-      </ProductPageAddToCartForm>
+      </ProductAddToCartForm>
     </template>
     <template #content>
       <ProductPageDescription :product="product" />

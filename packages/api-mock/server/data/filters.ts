@@ -154,5 +154,27 @@ export const filters: Filter[] = [
         count: 1
       }
     ]
+  },
+  {
+    label: 'Connectivity',
+    attributeCode: 'connectivity',
+    count: 4,
+    options: [
+      {
+        label: 'WiFi',
+        value: 'wifi',
+        count: 2
+      },
+      {
+        label: 'Bluetooth',
+        value: 'bluetooth',
+        count: 1
+      },
+      {
+        label: '5G',
+        value: '5g',
+        count: 1
+      }
+    ]
   }
 ];

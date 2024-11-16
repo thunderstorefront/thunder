@@ -31,7 +31,7 @@ const slides = [
           <img
             :src="slide.src.mobile"
             :alt="slide.alt"
-            class="h-[450px] w-full object-cover sm:h-[240px] sm:object-cover 2xl:h-[550px]"
+            class="h-[550px] w-full object-cover md:h-[450px] 2xl:h-[500px]"
           />
         </picture>
       </SwiperSlide>
