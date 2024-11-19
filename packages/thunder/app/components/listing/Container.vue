@@ -1,7 +1,12 @@
 <script setup lang="ts">
-defineProps<{
-  showFilters: boolean;
-}>();
+withDefaults(
+  defineProps<{
+    showFilters?: boolean;
+  }>(),
+  {
+    showFilters: true
+  }
+);
 </script>
 
 <template>

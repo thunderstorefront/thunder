@@ -1,4 +1,8 @@
-import type { ProductOption, ProductPage } from '@thunderstorefront/types';
+import type {
+  ProductOption,
+  ProductOptionValue,
+  ProductPage
+} from '@thunderstorefront/types';
 
 const options: ProductOption[] = [
   {
@@ -129,7 +133,10 @@ export const products: ProductPage[] = [
           }
         },
         inStock: true,
-        optionValues: [options[0].values[0], options[1].values[0]]
+        optionValues: [
+          options?.[0]?.values[0] as ProductOptionValue,
+          options?.[1]?.values[0] as ProductOptionValue
+        ]
       },
       {
         id: 'MIP13-256GB-BLK',
@@ -150,7 +157,10 @@ export const products: ProductPage[] = [
           }
         },
         inStock: true,
-        optionValues: [options[0].values[1], options[1].values[1]]
+        optionValues: [
+          options?.[0]?.values[1] as ProductOptionValue,
+          options?.[1]?.values[1] as ProductOptionValue
+        ]
       },
       {
         id: 'MIP13-512GB-BLK',
@@ -171,7 +181,10 @@ export const products: ProductPage[] = [
           }
         },
         inStock: false,
-        optionValues: [options[0].values[2], options[1].values[2]]
+        optionValues: [
+          options?.[0]?.values[2] as ProductOptionValue,
+          options?.[1]?.values[2] as ProductOptionValue
+        ]
       }
     ],
     options,
