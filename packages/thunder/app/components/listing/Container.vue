@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  showFilters: boolean;
+}>();
+</script>
+
 <template>
   <div>
     <ContainerOneColumn>
@@ -8,7 +14,7 @@
         <slot name="active-filters" />
       </div>
     </ContainerOneColumn>
-    <ContainerSidebar>
+    <ContainerSidebar :is-sidebar-visible="showFilters">
       <template #sidebar>
         <slot name="sidebar" />
       </template>

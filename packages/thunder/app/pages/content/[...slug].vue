@@ -6,7 +6,7 @@ const { fetchRoute } = useStoreRoute();
 const pageId = ref<string>('');
 const url = [...(params.slug ?? '')].join('/');
 
-const { data: routeData } = await useAsyncData('storeRouteData', () =>
+const { data: routeData } = await useAsyncData(`storeRouteData-${url}`, () =>
   fetchRoute(url)
 );
 

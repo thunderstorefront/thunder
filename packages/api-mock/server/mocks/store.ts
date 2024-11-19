@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 import type { StoreConfig } from '@thunderstorefront/types';
 import {
   DEFAULT_GRID_PER_PAGE,
@@ -12,7 +11,6 @@ export const mockStoreConfig = (
   storeId: string
 ): StoreConfig => ({
   locale: locale,
-  secureBaseMediaUrl: faker.internet.url(),
   storeId: storeId,
   storeName: 'default',
   storeSortOrder: DEFAULT_SORT_ORDER,

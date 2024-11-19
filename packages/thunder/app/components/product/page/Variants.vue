@@ -5,20 +5,28 @@ const props = defineProps<{ product: ProductPage }>();
 
 const localePath = useLocalePath();
 
+const { variants, setVariant } = useVariants();
+
+const selectedVariant = computed(() => variants.value[props.product.id]);
+
 const { setPreviewImage } = usePreviewImage();
 
-const getVariantPath = (variant: ProductVariant) => {
+function getVariantPath(variant: ProductVariant) {
   return localePath(
-    getProductPath(
-      `${props.product.slug}?variant=${extractOptionsFromInput(props.product.slug, variant.slug)}`
-    )
+    getProductPath(`${props.product.slug}?variant=${variant.id}`)
   );
-};
+}
 
 function selectVariant(variant: ProductVariant) {
   setPreviewImage(variant.thumbnail.url);
-  navigateTo(getVariantPath(variant));
+  setVariant(props.product.id, variant);
 }
+
+watch(selectedVariant, () => {
+  if (selectedVariant.value) {
+    selectVariant(selectedVariant.value);
+  }
+});
 </script>
 
 <template>
@@ -38,7 +46,8 @@ function selectVariant(variant: ProductVariant) {
         <div
           class="flex rounded-lg border border-gray-200 bg-white p-2"
           :class="[
-            variant.inStock ? 'hover:shadow-md' : 'bg-gray-100 opacity-60'
+            variant.inStock ? 'hover:shadow-md' : 'bg-gray-100 opacity-60',
+            variant.id === selectedVariant?.id && 'border-gray-400'
           ]"
         >
           <NuxtImg

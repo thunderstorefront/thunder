@@ -128,7 +128,8 @@ export const products: ProductPage[] = [
             value: 899
           }
         },
-        inStock: true
+        inStock: true,
+        optionValues: [options[0].values[0], options[1].values[0]]
       },
       {
         id: 'MIP13-256GB-BLK',
@@ -148,7 +149,8 @@ export const products: ProductPage[] = [
             value: 999
           }
         },
-        inStock: true
+        inStock: true,
+        optionValues: [options[0].values[1], options[1].values[1]]
       },
       {
         id: 'MIP13-512GB-BLK',
@@ -168,7 +170,8 @@ export const products: ProductPage[] = [
             value: 1099
           }
         },
-        inStock: false
+        inStock: false,
+        optionValues: [options[0].values[2], options[1].values[2]]
       }
     ],
     options,
