@@ -73,6 +73,7 @@ export type AddReviewInput = {
 export type CartItemInput = {
   quantity: number;
   productId: string;
+  variantId?: string;
   options?: Record<string, string>;
 };
 

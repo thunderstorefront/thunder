@@ -1,6 +1,5 @@
 export type StoreConfig = {
   locale: string;
-  secureBaseMediaUrl: string;
   storeId: string;
   storeName: string;
   storeSortOrder: number;

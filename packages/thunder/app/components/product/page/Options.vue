@@ -3,8 +3,10 @@ import type { ProductPage } from '@thunderstorefront/types';
 
 const props = defineProps<{ product: ProductPage }>();
 
-const route = useRoute();
 const { inputs, setInput } = useAddToCartForm();
+const { variants, setVariant, findVariant } = useVariants();
+
+const selectedVariant = computed(() => variants.value[props.product.id]);
 
 const input = computed(() => inputs.value[props.product.id] ?? null);
 
@@ -15,34 +17,17 @@ function selectOption(optionId: string, valueId: string): void {
   setInput({
     productId: props.product.id,
     quantity: input.value?.quantity ?? 1,
+    variantId: selectedVariant.value?.id,
     options: selectedOptions.value
   });
 }
 
-function selectQueryOptions() {
-  const selectedVariants = (route.query?.variant as string | undefined)?.split(
-    ','
-  );
-
-  if (!selectedVariants) return;
-
-  props.product.options.forEach((option) => {
-    const value = option.values.find((value) =>
-      selectedVariants.includes(value.code.toLowerCase())
-    );
-
-    if (value) {
-      selectOption(option.id, value.id);
-    }
-  });
-}
-
-watch(
-  () => route.query,
-  () => {
-    selectQueryOptions();
+watch(selectedOptions, () => {
+  const variant = findVariant(props.product.variants, selectedOptions.value);
+  if (variant) {
+    setVariant(props.product.id, variant);
   }
-);
+});
 </script>
 
 <template>

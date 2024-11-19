@@ -32,6 +32,7 @@ export type ProductVariant = {
   thumbnail: Image;
   priceRange: PriceRange;
   inStock: boolean;
+  optionValues: ProductOptionValue[];
 };
 
 export type Product = {

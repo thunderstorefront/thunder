@@ -9,7 +9,6 @@ const props = defineProps<{
 const { productPath, addToCart, addToWishlist } = useProductCard(props.product);
 
 const quantity = ref(1);
-const hover = ref(false);
 
 const price = computed(() => props.product.priceRange);
 </script>

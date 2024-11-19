@@ -57,7 +57,7 @@ function handleSubmitForm() {
 }
 
 const { data: regions } = useAsyncData(
-  'regions',
+  `regions-${formData.country}`,
   () => getRegions(formData.country),
   {
     watch: [() => formData.country]

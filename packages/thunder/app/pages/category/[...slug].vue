@@ -13,7 +13,7 @@ const input = ref<ProductListInput>({});
 
 const slug = [...(params.slug ?? '')].join('/');
 
-const { data: routeData } = await useAsyncData('storeRouteData', () =>
+const { data: routeData } = await useAsyncData(`storeRouteData-${slug}`, () =>
   fetchRoute(slug)
 );
 
@@ -21,8 +21,9 @@ if (routeData.value?.type === 'Category') {
   categoryId.value = routeData.value.id;
 }
 
-const { data: categoryData } = await useAsyncData('categoryData', () =>
-  fetchCategory(categoryId.value)
+const { data: categoryData } = await useAsyncData(
+  `categoryData-${categoryId.value}`,
+  () => fetchCategory(categoryId.value)
 );
 
 if (categoryData.value) {
@@ -40,7 +41,7 @@ if (categoryData.value) {
 }
 
 const { data: productListData, status } = await useAsyncData(
-  'productListData',
+  `productListData-${categoryId.value}`,
   () => fetchProducts(getProductListQuery(input.value))
 );
 
@@ -61,7 +62,10 @@ useHead({
       </div>
     </ContainerOneColumn>
     <ListingSkeleton v-if="status === 'pending'" />
-    <ListingContainer v-if="productListData">
+    <ListingContainer
+      v-if="productListData"
+      :show-filters="productListData.filters.length > 0"
+    >
       <template #active-filters>
         <ListingFiltersActive
           :filters="productListData.filters"

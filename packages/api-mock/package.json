@@ -1,7 +1,7 @@
 {
   "name": "@thunderstorefront/api-mock",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./nuxt.config.ts",
   "keywords": ["thunder", "shop-mock", "thunderstorefront"],
   "author": "Yaroslav Hromovyi",
