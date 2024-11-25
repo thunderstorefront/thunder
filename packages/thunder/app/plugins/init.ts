@@ -7,10 +7,12 @@ export default defineNuxtPlugin(async (): Promise<void> => {
   const storeToken = useCookie(sdkConfig.storeToken);
   const isReloaded = useCookie(config.reloadedToken);
 
-  const { storeConfig, fetchStoresConfig, updateStoreConfig } =
-    useStoreConfig();
+  const { storeConfig, updateStoreConfig } = useStoreConfig();
   const { updateCustomer } = useCustomer();
-  const { cart, createEmptyCart, updateCart } = useCart();
+  const { cart, updateCart } = useCart();
+
+  const { fetchStoresConfig } = useStoreConfigApi();
+  const { createEmptyCart } = useCartApi();
 
   const handleInitError = (): void => {
     storeToken.value = null;

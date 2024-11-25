@@ -1,49 +1,40 @@
 <script lang="ts" setup>
-import type { AvailableShippingMethod } from '@thunderstorefront/types';
+import type {
+  CheckoutShipping,
+  ShippingMethod
+} from '@thunderstorefront/types';
 
 const { showError } = useUiErrorHandler();
-const { cart, setShippingMethod } = useCart();
-const { availableShippingMethods, selectedShippingMethod } = useCheckout();
+const { setShippingMethod } = useCheckoutApi();
 const { getCartId } = useCartToken();
 
-const emit = defineEmits<{ 'set-shipping-method': [] }>();
+defineProps<{
+  modelValue?: CheckoutShipping;
+}>();
 
-function isShippingMethodActive(item: AvailableShippingMethod): boolean {
-  return (
-    item?.carrierCode === selectedShippingMethod.value?.carrierCode &&
-    item?.methodCode === selectedShippingMethod.value?.methodCode
-  );
-}
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: CheckoutShipping): void;
+}>();
 
-async function selectShippingMethod(
-  item: AvailableShippingMethod
-): Promise<void> {
-  if (!item.carrierCode || !item.methodCode || isShippingMethodActive(item)) {
-    return;
-  }
-
-  const data = await setShippingMethod(
-    getCartId(),
-    `${item.carrierCode}_${item.methodCode}`
-  );
-
-  if (!data) {
+async function selectShippingMethod(item: ShippingMethod): Promise<void> {
+  try {
+    const response = await setShippingMethod(getCartId(), item.methodCode);
+    emit('update:modelValue', response);
+  } catch {
     showError('Unable to set the shipping method');
-    return;
   }
-
-  cart.value = data;
-  emit('set-shipping-method');
 }
 </script>
 
 <template>
   <div>
-    <div v-if="availableShippingMethods.length" class="mt-6 space-y-8">
+    <div v-if="modelValue" class="mt-6 space-y-8">
       <CheckoutShippingItem
-        v-for="(item, index) in availableShippingMethods"
+        v-for="(item, index) in modelValue.availableShippingMethods"
         :key="index"
-        :is-active="isShippingMethodActive(item)"
+        :is-active="
+          modelValue.selectedShippingMethod?.methodCode === item.methodCode
+        "
         :item="item"
         @select-method="selectShippingMethod"
       />

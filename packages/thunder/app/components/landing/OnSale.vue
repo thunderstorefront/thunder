@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { fetchProducts } = useProduct();
+const { fetchProducts } = useProductApi();
 
 const { data } = await useAsyncData('bestsellerProducts', () =>
   fetchProducts({

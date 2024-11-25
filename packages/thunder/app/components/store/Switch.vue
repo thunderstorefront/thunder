@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const { storeConfig, fetchStoresConfig } = useStoreConfig();
+const { storeConfig } = useStoreConfig();
+const { fetchStoresConfig } = useStoreConfigApi();
 const { setStoreId } = useStoreToken();
 
 const { data } = await useAsyncData('stores', () => fetchStoresConfig());

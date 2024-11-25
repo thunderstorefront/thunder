@@ -1,10 +1,25 @@
 <script lang="ts" setup>
 import type { Address } from '@thunderstorefront/types';
 
-const props = defineProps<{
-  address: Address;
-  loading?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    address?: Address;
+    loading?: boolean;
+  }>(),
+  {
+    address: () => ({
+      firstName: '',
+      lastName: '',
+      street: ['', ''],
+      city: '',
+      country: '',
+      region: '',
+      postcode: '',
+      telephone: ''
+    }),
+    loading: false
+  }
+);
 
 const emit = defineEmits<{
   'submit-address': [value: Address];

@@ -2,8 +2,8 @@
 import type { RegisterAccountInput } from '@thunderstorefront/types';
 
 const { showError } = useUiErrorHandler();
-const { customer, registerCustomer } = useCustomer();
-const { login } = useCustomerLogin();
+const { customer } = useCustomer();
+const { loginCustomer, registerCustomer } = useCustomerApi();
 const localePath = useLocalePath();
 const { t } = useI18n();
 
@@ -38,7 +38,7 @@ async function submitRegister() {
     return;
   }
 
-  await login({ email, password });
+  await loginCustomer({ email, password });
   customer.value = data;
   loading.value = false;
 

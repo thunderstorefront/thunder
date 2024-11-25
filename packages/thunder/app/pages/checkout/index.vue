@@ -1,15 +1,30 @@
 <script setup lang="ts">
 const { cart, resetCart } = useCart();
+const { getCartId } = useCartToken();
 const { customer } = useCustomer();
-const { billingAddress, selectedPaymentMethod, selectedShippingMethod } =
-  useCheckout();
-const { placeOrder } = useCheckoutOrder();
+const { createOrder, fetchPayment, fetchShipping } = useCheckoutApi();
 const { showError } = useUiErrorHandler();
 const localePath = useLocalePath();
+const { orderNumber } = useCheckoutOrder();
 
 const isOrderSubmitted = ref(false);
 const isOrderProcessing = ref(false);
-const activeStep = ref(1);
+const activeStep = ref(3);
+
+const { data: shippingData } = await useAsyncData(
+  'shippingData',
+  () => fetchShipping(getCartId()),
+  {
+    watch: [cart]
+  }
+);
+const { data: paymentData } = await useAsyncData(
+  'paymentData',
+  () => fetchPayment(getCartId()),
+  {
+    watch: [shippingData]
+  }
+);
 
 const steps = [
   {
@@ -32,8 +47,8 @@ const steps = [
 const isPaymentAvailable = computed(() => {
   return !!(
     cart.value?.email &&
-    selectedShippingMethod.value &&
-    selectedPaymentMethod.value
+    shippingData.value?.selectedShippingMethod &&
+    paymentData.value?.selectedPaymentMethod
   );
 });
 
@@ -42,7 +57,7 @@ async function payNow() {
     isOrderSubmitted.value = true;
     isOrderProcessing.value = true;
 
-    await placeOrder();
+    orderNumber.value = await createOrder(getCartId());
     await resetCart();
     await navigateTo({
       path: localePath(ROUTES.checkoutSuccess)
@@ -54,26 +69,6 @@ async function payNow() {
     isOrderProcessing.value = false;
   }
 }
-
-function setActiveStep() {
-  if (billingAddress.value) {
-    activeStep.value = 2;
-  }
-
-  if (selectedShippingMethod.value) {
-    activeStep.value = 3;
-  }
-
-  if (selectedPaymentMethod.value?.code) {
-    activeStep.value = 4;
-  }
-}
-
-setActiveStep();
-
-watch(cart, () => {
-  setActiveStep();
-});
 
 useHead({
   title: 'Checkout'
@@ -91,7 +86,10 @@ definePageMeta({
       v-if="cart && !isOrderSubmitted"
       class="my-8 flex flex-col items-start gap-4 lg:my-16 lg:flex-row"
     >
-      <CheckoutSummary class="order-last w-full lg:w-1/3" />
+      <CheckoutSummary
+        class="order-last w-full lg:w-1/3"
+        :shipping-method="shippingData?.selectedShippingMethod || undefined"
+      />
 
       <CheckoutSteps
         class="w-full gap-4 md:flex-1 lg:w-2/3"
@@ -115,10 +113,14 @@ definePageMeta({
           </div>
         </template>
         <template #shipping>
-          <CheckoutShipping />
+          <CheckoutShipping v-if="cart.billingAddress" v-model="shippingData" />
         </template>
         <template #payment>
-          <CheckoutPayment class="mb-12" />
+          <CheckoutPayment
+            v-if="shippingData?.selectedShippingMethod"
+            v-model="paymentData"
+            class="mb-12"
+          />
           <form @submit.prevent="payNow">
             <CheckoutAgreements class="mb-6" />
             <UButton

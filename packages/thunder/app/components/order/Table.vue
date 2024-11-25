@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { fetchOrders } = useCustomerOrder();
+const { fetchOrders } = useCustomerOrderApi();
 
 const { data: orders } = await useAsyncData('customerOrders', () =>
   fetchOrders()

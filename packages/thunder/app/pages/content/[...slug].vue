@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { params } = useRoute();
 const { fetchPage } = usePage();
-const { fetchRoute } = useStoreRoute();
+const { fetchRoute } = useStoreRouteApi();
 
 const pageId = ref<string>('');
 const url = [...(params.slug ?? '')].join('/');

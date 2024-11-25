@@ -2,13 +2,14 @@
 import type { LoginUserInput } from '@thunderstorefront/types';
 
 const localePath = useLocalePath();
-const { login } = useCustomerLogin();
+const { loginCustomer } = useCustomerApi();
 const { onLogin } = useAuth();
-const { customer, fetchCustomer } = useCustomer();
+const { customer } = useCustomer();
+const { fetchCustomer, fetchCustomerCart } = useCustomerApi();
 const { showError } = useUiErrorHandler();
 const { setCartId, getCartId } = useCartToken();
-const { cart, mergeCarts } = useCart();
-const { fetchCustomerCart } = useCustomer();
+const { cart } = useCart();
+const { mergeCarts } = useCartApi();
 
 const formData = reactive<LoginUserInput>({
   email: '',
@@ -17,8 +18,8 @@ const formData = reactive<LoginUserInput>({
 const isLoading = ref(false);
 
 async function loginUser() {
-  const customerToken = await login(formData);
-  await onLogin(customerToken);
+  const { token } = await loginCustomer(formData);
+  await onLogin(token);
   customer.value = await fetchCustomer();
 }
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-const { setGuestEmailToCart } = useCart();
+const { setGuestEmailToCart } = useCartApi();
 const { cart } = useCart();
 const { getCartId } = useCartToken();
 const { showError } = useUiErrorHandler();

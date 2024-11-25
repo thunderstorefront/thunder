@@ -5,7 +5,8 @@ const route = useRoute();
 const { t } = useI18n();
 const { showSuccess } = useUiNotification();
 const { showError } = useUiErrorHandler();
-const { fetchCustomerAddresses, updateCustomerAddress } = useCustomerAddress();
+const { fetchCustomerAddresses, updateCustomerAddress } =
+  useCustomerAddressApi();
 const localePath = useLocalePath();
 const addressId = parseInt(`${route.params.id}`);
 

@@ -1,12 +1,7 @@
 <script lang="ts" setup>
-withDefaults(
-  defineProps<{
-    isSidebarVisible?: boolean;
-  }>(),
-  {
-    isSidebarVisible: true
-  }
-);
+defineProps<{
+  isSidebarVisible?: boolean;
+}>();
 </script>
 
 <template>

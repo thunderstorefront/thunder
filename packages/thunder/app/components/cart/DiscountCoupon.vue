@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { applyDiscountCode } = useCart();
+const { applyDiscountCode } = useCartApi();
 const { cart } = useCart();
 const { getCartId } = useCartToken();
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Address } from '@thunderstorefront/types';
 
-const { addCustomerAddress } = useCustomerAddress();
+const { addCustomerAddress } = useCustomerAddressApi();
 
 const localePath = useLocalePath();
 const { t } = useI18n();

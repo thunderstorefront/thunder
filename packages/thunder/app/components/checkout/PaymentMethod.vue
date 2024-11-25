@@ -1,8 +1,9 @@
 <script lang="ts" setup>
+import type { PaymentMethod } from '@thunderstorefront/types';
+
 defineProps<{
   isActive: boolean;
-  methodCode: string;
-  methodTitle: string;
+  item: PaymentMethod;
 }>();
 
 defineEmits(['select-method']);
@@ -12,7 +13,7 @@ defineEmits(['select-method']);
   <div
     class="mx-auto flex cursor-pointer items-center justify-between rounded-xl border px-8 py-4 dark:border-gray-700"
     :class="{ 'border border-blue-500': isActive }"
-    @click="$emit('select-method', methodCode)"
+    @click="$emit('select-method', item)"
   >
     <div class="flex items-center">
       <Icon
@@ -25,7 +26,7 @@ defineEmits(['select-method']);
         <h2
           class="text-lg font-medium text-gray-700 sm:text-2xl dark:text-gray-200"
         >
-          {{ methodTitle }}
+          {{ item.title }}
         </h2>
       </div>
     </div>

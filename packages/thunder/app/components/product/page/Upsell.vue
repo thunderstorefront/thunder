@@ -3,7 +3,7 @@ defineProps<{
   productSlug: string;
 }>();
 
-const { fetchProducts } = useProduct();
+const { fetchProducts } = useProductApi();
 
 const { data } = await useAsyncData('upsell-products', () =>
   fetchProducts({

@@ -8,7 +8,7 @@ export interface UseProductCard {
 }
 
 export function useProductCard(product: Product): UseProductCard {
-  const { addProductToWishlist } = useWishlist();
+  const { addProductToWishlist } = useWishlistApi();
   const localePath = useLocalePath();
   const { t } = useI18n();
   const { addItemAndUpdateCart } = useCartItem();

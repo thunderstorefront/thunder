@@ -4,7 +4,7 @@ const { resetQueryFilters } = useFiltering();
 const { searchQuery } = useSearch();
 const { setPage } = usePagination();
 const { setBreadcrumbs, breadcrumbs } = useBreadcrumbs();
-const { fetchProducts } = useProduct();
+const { fetchProducts } = useProductApi();
 const { getProductListQuery } = useProductList();
 
 function updateSearchBreadcrumbs() {

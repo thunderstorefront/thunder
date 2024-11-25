@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { fetchCustomerAddresses } = useCustomerAddress();
+const { fetchCustomerAddresses } = useCustomerAddressApi();
 const localePath = useLocalePath();
 
 const { data: addresses } = await useAsyncData('customerAddresses', () =>
