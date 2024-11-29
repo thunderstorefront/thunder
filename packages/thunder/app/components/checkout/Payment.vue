@@ -6,7 +6,7 @@ defineProps<{
 }>();
 
 const { setPaymentMethod } = useCheckoutApi();
-const { getCartId } = useCartToken();
+const { token } = useCartToken();
 const { showError } = useUiErrorHandler();
 
 const emit = defineEmits<{
@@ -15,7 +15,7 @@ const emit = defineEmits<{
 
 async function selectPaymentMethod(method: PaymentMethod) {
   try {
-    const response = await setPaymentMethod(getCartId(), method.code);
+    const response = await setPaymentMethod(token.value, method.code);
     emit('update:modelValue', response);
   } catch {
     showError('Can`t select payment method');

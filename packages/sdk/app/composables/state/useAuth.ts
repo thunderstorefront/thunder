@@ -1,34 +1,22 @@
-import { type Ref, nextTick } from 'vue';
-import { useRuntimeConfig, useCookie, useState } from '#app';
+import { useAuthToken } from './useAuthToken';
 
 export interface UseAuth {
-  token: Ref<string | null>;
   onLogin: (tokenData: string) => Promise<void>;
   onLogout: () => Promise<void>;
 }
 
 export function useAuth(): UseAuth {
-  const authTokenKey = useRuntimeConfig().public.thunderSdk.authToken;
-  const cookie = useCookie(authTokenKey);
-  const authToken = useState<string | null>(
-    'authToken',
-    () => cookie.value ?? null
-  );
+  const { setAuthToken, removeAuthToken } = useAuthToken();
 
   async function onLogin(tokenData: string): Promise<void> {
-    authToken.value = tokenData;
-    cookie.value = tokenData;
-    await nextTick();
+    setAuthToken(tokenData);
   }
 
   async function onLogout(): Promise<void> {
-    authToken.value = null;
-    cookie.value = null;
-    await nextTick();
+    removeAuthToken();
   }
 
   return {
-    token: authToken,
     onLogin,
     onLogout
   };

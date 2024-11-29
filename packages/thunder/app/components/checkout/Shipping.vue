@@ -6,7 +6,7 @@ import type {
 
 const { showError } = useUiErrorHandler();
 const { setShippingMethod } = useCheckoutApi();
-const { getCartId } = useCartToken();
+const { token } = useCartToken();
 
 defineProps<{
   modelValue?: CheckoutShipping;
@@ -18,7 +18,7 @@ const emit = defineEmits<{
 
 async function selectShippingMethod(item: ShippingMethod): Promise<void> {
   try {
-    const response = await setShippingMethod(getCartId(), item.methodCode);
+    const response = await setShippingMethod(token.value, item.methodCode);
     emit('update:modelValue', response);
   } catch {
     showError('Unable to set the shipping method');

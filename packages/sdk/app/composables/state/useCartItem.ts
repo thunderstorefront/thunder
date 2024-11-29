@@ -1,7 +1,6 @@
 import type { CartItemInput, CartItem } from '@thunderstorefront/types';
 import { useState } from '#app';
-import type { Ref, ComputedRef } from 'vue';
-import { computed } from 'vue';
+import { type Ref, type ComputedRef, computed } from 'vue';
 import { useCart } from './useCart';
 import { useCartItemApi } from '../api/useCartItemApi';
 import { useCartToken } from './useCartToken';
@@ -20,13 +19,13 @@ export interface UseCartItem {
 export function useCartItem(): UseCartItem {
   const loading = useState<boolean>('cartItemLoading', () => false);
   const { cart } = useCart();
-  const { getCartId } = useCartToken();
+  const { token } = useCartToken();
   const { removeItem, addItem, changeQuantity } = useCartItemApi();
 
   async function removeItemAndUpdateCart(itemId: string): Promise<void> {
     try {
       loading.value = true;
-      cart.value = await removeItem(getCartId(), itemId);
+      cart.value = await removeItem(token.value, itemId);
     } finally {
       loading.value = false;
     }
@@ -38,7 +37,7 @@ export function useCartItem(): UseCartItem {
   ): Promise<void> {
     try {
       loading.value = true;
-      cart.value = await changeQuantity(getCartId(), itemId, quantity);
+      cart.value = await changeQuantity(token.value, itemId, quantity);
     } finally {
       loading.value = false;
     }
@@ -49,7 +48,7 @@ export function useCartItem(): UseCartItem {
   ): Promise<void> {
     try {
       loading.value = true;
-      cart.value = await addItem(getCartId(), cartItems);
+      cart.value = await addItem(token.value, cartItems);
     } finally {
       loading.value = false;
     }

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { cart, resetCart } = useCart();
-const { getCartId } = useCartToken();
+const { token } = useCartToken();
 const { customer } = useCustomer();
 const { createOrder, fetchPayment, fetchShipping } = useCheckoutApi();
 const { showError } = useUiErrorHandler();
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const { orderNumber } = useCheckoutOrder();
 
 const isOrderSubmitted = ref(false);
@@ -13,14 +13,14 @@ const activeStep = ref(3);
 
 const { data: shippingData } = await useAsyncData(
   'shippingData',
-  () => fetchShipping(getCartId()),
+  () => fetchShipping(token.value),
   {
     watch: [cart]
   }
 );
 const { data: paymentData } = await useAsyncData(
   'paymentData',
-  () => fetchPayment(getCartId()),
+  () => fetchPayment(token.value),
   {
     watch: [shippingData]
   }
@@ -57,10 +57,10 @@ async function payNow() {
     isOrderSubmitted.value = true;
     isOrderProcessing.value = true;
 
-    orderNumber.value = await createOrder(getCartId());
+    orderNumber.value = await createOrder(token.value);
     await resetCart();
     await navigateTo({
-      path: localePath(ROUTES.checkoutSuccess)
+      path: localizePath(ROUTES.checkoutSuccess)
     });
   } catch (error) {
     showError(error);

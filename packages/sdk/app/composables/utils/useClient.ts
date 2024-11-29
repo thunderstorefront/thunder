@@ -2,7 +2,8 @@ import { FetchError, type FetchOptions } from 'ofetch';
 import type { CustomError, CustomErrorDetails } from '@thunderstorefront/types';
 import { useNuxtApp } from '#app';
 import { useClientUrl } from './useClientUrl';
-import { useAuth } from '../state/useAuth';
+import { useAuthToken } from '../state/useAuthToken';
+import { useStoreToken } from '../state/useStoreToken';
 
 const defaultError = (err: FetchError): CustomError => ({
   error: {
@@ -16,16 +17,21 @@ const defaultError = (err: FetchError): CustomError => ({
 export const useClient = () => {
   const nuxt = useNuxtApp();
   const baseURL = useClientUrl();
-  const { token } = useAuth();
 
   return async <T>(
     url: string,
     fetchOptions: FetchOptions = {}
   ): Promise<T> => {
-    const headers: HeadersInit = {};
+    const { token: authToken } = useAuthToken();
+    const { token: storeToken } = useStoreToken();
+    const headers: Record<string, string> = {};
 
-    if (token.value) {
-      headers.Authorization = token.value;
+    if (authToken.value) {
+      headers.authorization = authToken.value;
+    }
+
+    if (storeToken.value) {
+      headers.store = storeToken.value;
     }
 
     try {

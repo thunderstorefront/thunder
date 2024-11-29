@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { storeConfig } = useStoreConfig();
 const { fetchStoresConfig } = useStoreConfigApi();
-const { setStoreId } = useStoreToken();
+const { setStoreToken } = useStoreToken();
 
 const { data } = await useAsyncData('stores', () => fetchStoresConfig());
 
@@ -22,7 +22,7 @@ function changeStore(id: string) {
     return;
   }
 
-  setStoreId(id);
+  setStoreToken(id);
   window.location.reload();
 }
 

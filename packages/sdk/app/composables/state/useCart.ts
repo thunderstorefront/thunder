@@ -13,7 +13,7 @@ export interface UseCart {
 export function useCart(): UseCart {
   const cart = useState<Cart | null>('cart', () => null);
   const { fetchCart, createEmptyCart } = useCartApi();
-  const { setCartId } = useCartToken();
+  const { setCartToken } = useCartToken();
 
   async function updateCart(cartId: string): Promise<Cart> {
     cart.value = await fetchCart(cartId);
@@ -22,7 +22,7 @@ export function useCart(): UseCart {
 
   async function resetCart(): Promise<Cart> {
     cart.value = await createEmptyCart();
-    setCartId(cart.value.id);
+    setCartToken(cart.value.id);
     return cart.value;
   }
 

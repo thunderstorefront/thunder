@@ -1,4 +1,5 @@
 import type { Page } from '@thunderstorefront/types';
+import { useClient } from '../utils/useClient';
 
 export interface UsePage {
   fetchPage: (id: string) => Promise<Page>;

@@ -1,20 +1,20 @@
 import type { Route } from '@thunderstorefront/types';
 
 export function useRedirect(url: string, route?: Route): void {
-  const localePath = useLocalePath();
+  const localizePath = useLocalePath();
   try {
     if (!route) {
-      navigateTo(localePath(url), { redirectCode: 301 });
+      navigateTo(localizePath(url), { redirectCode: 301 });
       return;
     }
     if (route.type === 'Category') {
-      navigateTo(localePath(getCategoryPath(url)));
+      navigateTo(localizePath(getCategoryPath(url)));
     }
     if (route.type === 'Product') {
-      navigateTo(localePath(getProductPath(url)));
+      navigateTo(localizePath(getProductPath(url)));
     }
     if (route.type === 'Page') {
-      navigateTo(localePath(getCmsPagePath(url)));
+      navigateTo(localizePath(getCmsPagePath(url)));
     }
   } catch (error) {
     if (error instanceof Error) {

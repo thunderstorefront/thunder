@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { cartItems } = useCartItem();
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -10,13 +9,13 @@ const localePath = useLocalePath();
         {{ $t('messages.shop.items') }}
       </h3>
       <div class="flex-auto" />
-      <NuxtLink
+      <LocalizedLink
         title="Edit cart"
-        :to="localePath(ROUTES.cart)"
+        :to="ROUTES.cart"
         class="cursor-pointer text-base font-normal text-gray-600 underline hover:text-gray-800 dark:text-gray-50 dark:hover:text-white"
       >
         {{ $t('messages.general.edit') }}
-      </NuxtLink>
+      </LocalizedLink>
     </div>
 
     <div

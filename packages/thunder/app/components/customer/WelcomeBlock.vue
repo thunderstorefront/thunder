@@ -2,7 +2,7 @@
 const { customer } = useCustomer();
 const { onLogout } = useAuth();
 const { resetCart } = useCart();
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 
 const { showError } = useUiErrorHandler();
 
@@ -12,7 +12,7 @@ async function handleLogout() {
     await resetCart();
     customer.value = null;
     navigateTo({
-      path: localePath(ROUTES.home)
+      path: localizePath(ROUTES.home)
     });
   } catch (error) {
     showError(error);
@@ -29,7 +29,7 @@ async function handleLogout() {
           {{ customer.lastName }}
         </div>
         <div class="flex gap-4">
-          <NuxtLink :to="localePath(ROUTES.account)">
+          <LocalizedLink :to="ROUTES.account">
             <UButton
               color="white"
               :label="$t('messages.account.yourAccount')"
@@ -39,7 +39,7 @@ async function handleLogout() {
                 <Icon name="solar:user-circle-outline" class="text-2xl" />
               </template>
             </UButton>
-          </NuxtLink>
+          </LocalizedLink>
           <UButton
             color="white"
             :label="$t('messages.account.logout')"
@@ -65,22 +65,22 @@ async function handleLogout() {
           />
         </div>
         <div class="flex gap-4">
-          <NuxtLink :to="localePath(ROUTES.authLogin)">
+          <LocalizedLink :to="ROUTES.authLogin">
             <UButton
               color="white"
               :label="$t('messages.account.signIn')"
               variant="ghost"
               class="dark;text-white hover:text-black"
             />
-          </NuxtLink>
-          <NuxtLink :to="localePath(ROUTES.authSignup)">
+          </LocalizedLink>
+          <LocalizedLink :to="ROUTES.authSignup">
             <UButton
               color="white"
               :label="$t('messages.account.signUp')"
               variant="ghost"
               class="hover:text-black dark:text-white"
             />
-          </NuxtLink>
+          </LocalizedLink>
         </div>
       </div>
       <div class="px-4 text-sm dark:text-gray-100">

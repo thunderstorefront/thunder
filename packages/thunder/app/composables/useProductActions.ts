@@ -1,21 +1,17 @@
 import type { Product } from '@thunderstorefront/types';
-import type { ComputedRef } from 'vue';
 
-export interface UseProductCard {
-  productPath: ComputedRef<string>;
+export interface UseProductActions {
   addToCart: (productId: string, quantity: number) => Promise<void>;
   addToWishlist: (productId: string) => Promise<void>;
 }
 
-export function useProductCard(product: Product): UseProductCard {
+export function useProductActions(product: Product): UseProductActions {
   const { addProductToWishlist } = useWishlistApi();
-  const localePath = useLocalePath();
+  const localizePath = useLocalePath();
   const { t } = useI18n();
   const { addItemAndUpdateCart } = useCartItem();
   const { showSuccess } = useUiNotification();
   const { showError } = useUiErrorHandler();
-
-  const productPath = computed(() => localePath(getProductPath(product.slug)));
 
   async function addToCart(productId: string, quantity: number) {
     try {
@@ -31,7 +27,7 @@ export function useProductCard(product: Product): UseProductCard {
     } catch (error) {
       showError(error);
       navigateTo({
-        path: productPath.value
+        path: localizePath(getProductPath(product.slug))
       });
     }
   }
@@ -53,7 +49,6 @@ export function useProductCard(product: Product): UseProductCard {
   }
 
   return {
-    productPath,
     addToCart,
     addToWishlist
   };

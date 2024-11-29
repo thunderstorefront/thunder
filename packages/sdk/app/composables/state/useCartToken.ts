@@ -1,28 +1,28 @@
 import type { Ref } from 'vue';
 import { computed } from 'vue';
-import { useRuntimeConfig, useCookie } from '#app';
+import { useCookie } from '#app';
 
 export interface UseCartToken {
-  token: Ref<string | null>;
-  getCartId: () => string;
-  setCartId: (id: string) => void;
+  token: Ref<string>;
+  setCartToken: (id: string) => void;
+  resetCartToken: () => void;
 }
 
 export function useCartToken(): UseCartToken {
   const cartTokenKey = useRuntimeConfig().public.thunderSdk.cartToken;
-  const cartIdCookie = useCookie(cartTokenKey);
+  const cookie = useCookie(cartTokenKey);
 
-  function getCartId(): string {
-    return cartIdCookie.value ?? '';
+  function setCartToken(id: string): void {
+    cookie.value = id;
   }
 
-  function setCartId(id: string): void {
-    cartIdCookie.value = id;
+  function resetCartToken(): void {
+    cookie.value = null;
   }
 
   return {
-    token: computed(() => cartIdCookie.value ?? null),
-    setCartId,
-    getCartId
+    token: computed(() => cookie.value ?? ''),
+    setCartToken,
+    resetCartToken
   };
 }

@@ -1,35 +1,35 @@
 <script setup lang="ts">
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const categories = [
   {
     url: '/images/categories/audio.webp',
     label: 'Audio',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/categories/laptops.png',
     label: 'Laptops',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/categories/phone.png',
     label: 'Phone',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/categories/straps.webp',
     label: 'Straps',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/categories/tablets.png',
     label: 'Tablets',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/categories/wearables.webp',
     label: 'Wearables',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   }
 ];
 </script>

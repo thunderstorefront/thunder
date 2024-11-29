@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-const localePath = useLocalePath();
-</script>
-
 <template>
   <footer class="relative bg-white dark:bg-gray-900">
     <ContainerOneColumn class="border-t border-slate-300">
@@ -36,27 +32,21 @@ const localePath = useLocalePath();
             <h2 class="mb-3 lg:mb-6">Home page</h2>
           </BaseTypography>
 
-          <NuxtLink class="text-sm" :to="localePath('/')">
+          <LocalizedLink class="text-sm" :to="'/'">
             <span>{{ 'Home' }}</span>
-          </NuxtLink>
+          </LocalizedLink>
 
-          <NuxtLink
-            class="text-sm"
-            :to="localePath(getCategoryPath('electronics'))"
-          >
+          <LocalizedLink class="text-sm" :to="getCategoryPath('electronics')">
             <span>{{ 'Category' }}</span>
-          </NuxtLink>
+          </LocalizedLink>
 
-          <NuxtLink class="text-sm" :to="localePath('/search')">
+          <LocalizedLink class="text-sm" :to="'/search'">
             <span>{{ 'Search' }}</span>
-          </NuxtLink>
+          </LocalizedLink>
 
-          <NuxtLink
-            class="text-sm"
-            :to="localePath(getCmsPagePath('about-us'))"
-          >
+          <LocalizedLink class="text-sm" :to="getCmsPagePath('about-us')">
             <span>{{ 'About us' }}</span>
-          </NuxtLink>
+          </LocalizedLink>
         </div>
 
         <div class="flex flex-col gap-2">
@@ -64,18 +54,14 @@ const localePath = useLocalePath();
             <h2 class="mb-3 lg:mb-6">Support</h2>
           </BaseTypography>
 
-          <NuxtLink
+          <LocalizedLink
             class="text-sm"
-            :to="
-              localePath(
-                getCmsPagePath('privacy-policy-cookie-restriction-mode')
-              )
-            "
+            :to="getCmsPagePath('privacy-policy-cookie-restriction-mode')"
           >
             <span>
               {{ 'Privacy Policy' }}
             </span>
-          </NuxtLink>
+          </LocalizedLink>
         </div>
 
         <div>

@@ -3,26 +3,26 @@ import { computed } from 'vue';
 import { useRuntimeConfig, useCookie } from '#app';
 
 export interface UseStoreToken {
-  token: Ref<string | null>;
-  getStoreId: () => string;
-  setStoreId: (id: string) => void;
+  token: Ref<string>;
+  setStoreToken: (id: string) => void;
+  resetStoreToken: () => void;
 }
 
 export function useStoreToken(): UseStoreToken {
   const storeTokenKey = useRuntimeConfig().public.thunderSdk.storeToken;
-  const storeIdCookie = useCookie(storeTokenKey);
+  const cookie = useCookie(storeTokenKey);
 
-  function getStoreId(): string {
-    return storeIdCookie.value ?? '';
+  function setStoreToken(id: string): void {
+    cookie.value = id;
   }
 
-  function setStoreId(id: string): void {
-    storeIdCookie.value = id;
+  function resetStoreToken(): void {
+    cookie.value = null;
   }
 
   return {
-    token: computed(() => storeIdCookie.value ?? null),
-    setStoreId,
-    getStoreId
+    token: computed(() => cookie.value ?? ''),
+    setStoreToken,
+    resetStoreToken
   };
 }

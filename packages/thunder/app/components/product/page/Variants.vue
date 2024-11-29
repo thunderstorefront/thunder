@@ -3,8 +3,6 @@ import type { ProductPage, ProductVariant } from '@thunderstorefront/types';
 
 const props = defineProps<{ product: ProductPage }>();
 
-const localePath = useLocalePath();
-
 const { variants, setVariant } = useVariants();
 
 const selectedVariant = computed(() => variants.value[props.product.id]);
@@ -12,9 +10,7 @@ const selectedVariant = computed(() => variants.value[props.product.id]);
 const { setPreviewImage } = usePreviewImage();
 
 function getVariantPath(variant: ProductVariant) {
-  return localePath(
-    getProductPath(`${props.product.slug}?variant=${variant.id}`)
-  );
+  return getProductPath(`${props.product.slug}?variant=${variant.id}`);
 }
 
 function selectVariant(variant: ProductVariant) {
@@ -35,7 +31,7 @@ watch(selectedVariant, () => {
       {{ $t('messages.shop.moreVariants') }}
     </BaseTypography>
     <div class="flex flex-wrap gap-4">
-      <NuxtLink
+      <LocalizedLink
         v-for="variant in product.variants"
         :key="variant.id"
         :to="getVariantPath(variant)"
@@ -56,7 +52,7 @@ watch(selectedVariant, () => {
             :alt="variant.thumbnail.label"
           />
         </div>
-      </NuxtLink>
+      </LocalizedLink>
     </div>
   </div>
 </template>

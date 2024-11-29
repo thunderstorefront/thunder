@@ -1,4 +1,5 @@
 export * from './state/useAuth';
+export * from './state/useAuthToken';
 export * from './state/useCart';
 export * from './state/useCartItem';
 export * from './state/useCartToken';

@@ -1,4 +1,5 @@
 import type { Region } from '@thunderstorefront/types';
+import { useCountry } from './useCountry';
 
 export interface UseRegion {
   getRegions: (countryCode: string) => Promise<Region[]>;

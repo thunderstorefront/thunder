@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const { cartItems } = useCartItem();
 
 const emit = defineEmits(['close-minicart']);
@@ -7,7 +7,7 @@ const emit = defineEmits(['close-minicart']);
 function handleRedirect(url: string) {
   emit('close-minicart');
   navigateTo({
-    path: localePath(url)
+    path: localizePath(url)
   });
 }
 </script>

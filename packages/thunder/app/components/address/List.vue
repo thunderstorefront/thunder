@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { fetchCustomerAddresses } = useCustomerAddressApi();
-const localePath = useLocalePath();
 
 const { data: addresses } = await useAsyncData('customerAddresses', () =>
   fetchCustomerAddresses()
@@ -23,14 +22,14 @@ const { data: addresses } = await useAsyncData('customerAddresses', () =>
         />
       </div>
       <div>
-        <NuxtLink :to="localePath(ROUTES.accountAddressNew)">
+        <LocalizedLink :to="ROUTES.accountAddressNew">
           <UButton
             color="primary"
             size="xl"
             :label="'Add new address'"
             type="submit"
           />
-        </NuxtLink>
+        </LocalizedLink>
       </div>
     </BaseCard>
   </div>

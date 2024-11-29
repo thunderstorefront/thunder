@@ -7,7 +7,7 @@ const { showSuccess } = useUiNotification();
 const { showError } = useUiErrorHandler();
 const { fetchCustomerAddresses, updateCustomerAddress } =
   useCustomerAddressApi();
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const addressId = parseInt(`${route.params.id}`);
 
 const { data: addresses } = await useAsyncData('customerAddresses', () =>
@@ -31,7 +31,7 @@ const saveAsBilling = ref(currentAddress?.defaultBilling ?? false);
 const saveAsShipping = ref(currentAddress?.defaultShipping ?? false);
 
 function navigateToAddressesList() {
-  navigateTo(localePath(ROUTES.accountAddressList));
+  navigateTo(localizePath(ROUTES.accountAddressList));
 }
 
 function updateAddress(address: Address) {

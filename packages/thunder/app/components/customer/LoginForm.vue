@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { LoginUserInput } from '@thunderstorefront/types';
 
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const { loginCustomer } = useCustomerApi();
 const { onLogin } = useAuth();
 const { customer } = useCustomer();
 const { fetchCustomer, fetchCustomerCart } = useCustomerApi();
 const { showError } = useUiErrorHandler();
-const { setCartId, getCartId } = useCartToken();
+const { setCartToken, token } = useCartToken();
 const { cart } = useCart();
 const { mergeCarts } = useCartApi();
 
@@ -26,14 +26,14 @@ async function loginUser() {
 async function mergeUserCart() {
   try {
     const customerCart = await fetchCustomerCart();
-    const data = await mergeCarts(getCartId(), customerCart.id);
+    const data = await mergeCarts(token.value, customerCart.id);
 
     if (!data) {
       showError('Can`t merge carts');
     }
 
     cart.value = data;
-    setCartId(cart.value.id);
+    setCartToken(cart.value.id);
   } catch (error) {
     showError(error);
   }
@@ -47,7 +47,7 @@ async function handleLogin() {
     await mergeUserCart();
 
     navigateTo({
-      path: localePath(ROUTES.account)
+      path: localizePath(ROUTES.account)
     });
   } catch (error) {
     showError(error);
@@ -104,9 +104,9 @@ async function handleLogin() {
     </form>
     <p class="text-base text-gray-400">
       {{ $t('messages.account.notAMember') }}
-      <NuxtLink :to="localePath(ROUTES.authSignup)" title="Sign up">
+      <LocalizedLink :to="ROUTES.authSignup" title="Sign up">
         {{ $t('messages.account.signUp') }}
-      </NuxtLink>
+      </LocalizedLink>
     </p>
   </div>
 </template>
