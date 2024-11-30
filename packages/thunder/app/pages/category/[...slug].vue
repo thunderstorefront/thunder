@@ -2,9 +2,9 @@
 import type { Category, ProductListInput } from '@thunderstorefront/types';
 
 const { params } = useRoute();
-const { fetchRoute } = useStoreRoute();
-const { fetchCategory } = useCategory();
-const { fetchProducts } = useProduct();
+const { fetchRoute } = useStoreRouteApi();
+const { fetchCategory } = useCategoryApi();
+const { fetchProducts } = useProductApi();
 const { getProductListQuery } = useProductList();
 
 const categoryId = ref('');

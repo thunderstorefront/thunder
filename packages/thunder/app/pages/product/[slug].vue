@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { params } = useRoute();
-const { fetchRoute } = useStoreRoute();
-const { fetchProductPage } = useProduct();
+const { fetchRoute } = useStoreRouteApi();
+const { fetchProductPage } = useProductApi();
 
 const productId = ref<string>('');
 const url = params.slug?.toString() ?? '';

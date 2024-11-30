@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { Address } from '@thunderstorefront/types';
 
-const { addCustomerAddress } = useCustomerAddress();
+const { addCustomerAddress } = useCustomerAddressApi();
 
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const { t } = useI18n();
 const { showSuccess } = useUiNotification();
 const { showError } = useUiErrorHandler();
@@ -47,7 +47,7 @@ async function saveAddress() {
 
   showSuccess(t('messages.account.createAddressSuccess'));
   navigateTo({
-    path: localePath(ROUTES.accountAddressList)
+    path: localizePath(ROUTES.accountAddressList)
   });
 }
 </script>

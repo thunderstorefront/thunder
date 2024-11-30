@@ -6,7 +6,7 @@ const props = defineProps<{
   variant: 'regular' | 'filled';
 }>();
 
-const { productPath, addToCart, addToWishlist } = useProductCard(props.product);
+const { addToCart, addToWishlist } = useProductActions(props.product);
 
 const quantity = ref(1);
 
@@ -14,7 +14,11 @@ const price = computed(() => props.product.priceRange);
 </script>
 
 <template>
-  <NuxtLink class="w-full" :title="product.title" :to="productPath">
+  <LocalizedLink
+    class="w-full"
+    :title="product.title"
+    :to="getProductPath(product.slug)"
+  >
     <div
       class="relative flex h-full w-full flex-col justify-between"
       :class="{
@@ -107,5 +111,5 @@ const price = computed(() => props.product.priceRange);
         </div>
       </div>
     </div>
-  </NuxtLink>
+  </LocalizedLink>
 </template>

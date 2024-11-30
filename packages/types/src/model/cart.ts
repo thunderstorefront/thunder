@@ -6,6 +6,7 @@ import type { Product } from './product';
 export type PaymentMethod = {
   code: string;
   title: string;
+  active: boolean;
 };
 
 export type ShippingMethod = {
@@ -14,18 +15,12 @@ export type ShippingMethod = {
   methodCode: string;
   methodTitle: string;
   amount: Money;
-};
-
-export type AvailableShippingMethod = ShippingMethod & {
-  available: boolean;
+  active: boolean;
 };
 
 export type CartBillingAddress = Address;
 
-export type CartShippingAddress = {
-  availableShippingMethods: AvailableShippingMethod[];
-  selectedShippingMethod: ShippingMethod | null;
-};
+export type CartShippingAddress = Address;
 
 export type CartItemPrices = {
   price: Money;
@@ -57,7 +52,5 @@ export type Cart = {
   prices: CartPrices;
   totalQuantity: number;
   billingAddress: Maybe<CartBillingAddress>;
-  shippingAddresses: CartShippingAddress[];
-  selectedPaymentMethod: Maybe<PaymentMethod>;
-  availablePaymentMethods: PaymentMethod[];
+  shippingAddresses: Maybe<CartShippingAddress>[];
 };

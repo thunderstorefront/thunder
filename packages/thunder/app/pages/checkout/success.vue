@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { orderNumber } = useCheckoutOrder();
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 
 if (!orderNumber.value) {
   navigateTo({
-    path: localePath(ROUTES.home)
+    path: localizePath(ROUTES.home)
   });
 }
 

@@ -5,7 +5,7 @@ const props = defineProps<{
   wishlist: Wishlist;
 }>();
 
-const { removeProductFromWishlist } = useWishlist();
+const { removeProductFromWishlist } = useWishlistApi();
 const wishlistData = ref(props.wishlist);
 
 const wishlistItems = computed(() => props.wishlist.items);

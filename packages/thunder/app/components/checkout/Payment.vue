@@ -1,44 +1,43 @@
 <script lang="ts" setup>
-const { setPaymentMethod } = useCart();
-const { cart } = useCart();
-const { availablePaymentMethods } = useCheckout();
-const { getCartId } = useCartToken();
+import type { CheckoutPayment, PaymentMethod } from '@thunderstorefront/types';
+
+defineProps<{
+  modelValue?: CheckoutPayment;
+}>();
+
+const { setPaymentMethod } = useCheckoutApi();
+const { token } = useCartToken();
 const { showError } = useUiErrorHandler();
 
-const emit = defineEmits<{ 'set-payment-method': [] }>();
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: CheckoutPayment): void;
+}>();
 
-function isPaymentMethodActive(code?: string): boolean {
-  if (!code) {
-    return false;
-  }
-
-  return code === cart.value?.selectedPaymentMethod?.code;
-}
-
-async function selectPaymentMethod(code: string) {
-  const data = await setPaymentMethod(getCartId(), code);
-
-  if (!data) {
+async function selectPaymentMethod(method: PaymentMethod) {
+  try {
+    const response = await setPaymentMethod(token.value, method.code);
+    emit('update:modelValue', response);
+  } catch {
     showError('Can`t select payment method');
-    return;
   }
-
-  cart.value = data;
-  emit('set-payment-method');
 }
 </script>
 
 <template>
   <div class="container mx-auto">
-    <div class="mt-6 space-y-8">
+    <div v-if="modelValue" class="mt-6 space-y-8">
       <CheckoutPaymentMethod
-        v-for="method in availablePaymentMethods"
+        v-for="method in modelValue.availablePaymentMethods"
         :key="method.code"
-        :method-code="method.code ?? ''"
-        :method-title="method.title ?? ''"
-        :is-active="isPaymentMethodActive(method.code)"
+        :item="method"
+        :is-active="modelValue.selectedPaymentMethod?.code === method.code"
         @select-method="selectPaymentMethod"
       />
+    </div>
+    <div v-else>
+      <BaseTypography class="mt-4">
+        <span>{{ $t('messages.checkout.noPaymentMethods') }}</span>
+      </BaseTypography>
     </div>
   </div>
 </template>

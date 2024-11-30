@@ -1,7 +1,8 @@
-export default defineNuxtPlugin((): void => {
-  const { token, onLogin } = useAuth();
+export default defineNuxtPlugin(async (): Promise<void> => {
+  const { onLogin } = useAuth();
+  const { token } = useAuthToken();
 
   if (token.value) {
-    onLogin(token.value);
+    await onLogin(token.value);
   }
 });

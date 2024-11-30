@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { fetchAgreements } = useCheckout();
+const { fetchAgreements } = useCheckoutApi();
 const { data: agreements } = await useAsyncData('checkoutAgreements', () =>
   fetchAgreements()
 );

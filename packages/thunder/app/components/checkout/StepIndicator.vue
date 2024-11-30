@@ -1,14 +1,12 @@
 <script setup lang="ts">
-interface StepIndicatorProps {
+const props = defineProps<{
   step: number;
   currentStep: number;
   label: string;
-}
-
-const props = defineProps<StepIndicatorProps>();
+}>();
 
 const isCurrentStep = computed(() => props.step === props.currentStep);
-const isCompletedStep = computed(() => props.step < props.currentStep);
+const isCompletedStep = computed(() => props.step <= props.currentStep);
 </script>
 
 <template>

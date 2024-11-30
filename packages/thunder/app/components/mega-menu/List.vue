@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 
 const { showMegaMenu, menuItems } = useMegaMenu();
 
@@ -29,7 +29,7 @@ function handleLink(slug = '', containsProducts = false) {
     showMegaMenu.value = false;
 
     navigateTo({
-      path: localePath(getCategoryPath(slug))
+      path: localizePath(getCategoryPath(slug))
     });
   }
 }

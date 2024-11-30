@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-const localePath = useLocalePath();
-</script>
-
 <template>
   <BaseCard>
     <BaseTypography variant="subtitle" class="mb-6">
@@ -9,29 +5,29 @@ const localePath = useLocalePath();
     </BaseTypography>
     <AccountNavigation>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(ROUTES.account)">
+        <LocalizedLink :to="ROUTES.account">
           {{ $t('messages.account.dashboard') }}
-        </NuxtLink>
+        </LocalizedLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(ROUTES.accountOrders)">
+        <LocalizedLink :to="ROUTES.accountOrders">
           {{ $t('messages.account.orders') }}
-        </NuxtLink>
+        </LocalizedLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(ROUTES.accountEdit)">
+        <LocalizedLink :to="ROUTES.accountEdit">
           {{ $t('messages.account.profile') }}
-        </NuxtLink>
+        </LocalizedLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(ROUTES.accountAddressList)">
+        <LocalizedLink :to="ROUTES.accountAddressList">
           {{ $t('messages.account.addresses') }}
-        </NuxtLink>
+        </LocalizedLink>
       </AccountNavigationItem>
       <AccountNavigationItem>
-        <NuxtLink :to="localePath(ROUTES.accountWishlist)">
+        <LocalizedLink :to="ROUTES.accountWishlist">
           {{ $t('messages.account.wishlist') }}
-        </NuxtLink>
+        </LocalizedLink>
       </AccountNavigationItem>
     </AccountNavigation>
   </BaseCard>

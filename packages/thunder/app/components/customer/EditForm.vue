@@ -3,7 +3,7 @@ const { showError } = useUiErrorHandler();
 const { showSuccess } = useUiNotification();
 const { t } = useI18n();
 const { customer } = useCustomer();
-const { changeCustomerData } = useCustomer();
+const { changeCustomerData } = useCustomerApi();
 
 const formData = reactive({
   firstName: customer.value?.firstName ?? '',

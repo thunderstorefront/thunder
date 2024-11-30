@@ -41,10 +41,6 @@ export default defineNuxtConfig({
     defaultLocale: 'en'
   },
 
-  typescript: {
-    includeWorkspace: true
-  },
-
   image: {
     domains: ['vercel.app']
   },

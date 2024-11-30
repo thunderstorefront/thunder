@@ -17,7 +17,7 @@ const flags: Record<string, string> = {
       $t('messages.general.language')
     }}</span>
     <div class="flex flex-wrap gap-4">
-      <NuxtLink
+      <LocalizedLink
         v-for="item in availableLocales"
         :key="item.code"
         :to="switchLocalePath(item.code)"
@@ -32,7 +32,7 @@ const flags: Record<string, string> = {
             <span> {{ item.name }}</span>
           </template>
         </UButton>
-      </NuxtLink>
+      </LocalizedLink>
     </div>
   </div>
 </template>

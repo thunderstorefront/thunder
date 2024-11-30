@@ -2,9 +2,9 @@
 import type { RegisterAccountInput } from '@thunderstorefront/types';
 
 const { showError } = useUiErrorHandler();
-const { customer, registerCustomer } = useCustomer();
-const { login } = useCustomerLogin();
-const localePath = useLocalePath();
+const { customer } = useCustomer();
+const { loginCustomer, registerCustomer } = useCustomerApi();
+const localizePath = useLocalePath();
 const { t } = useI18n();
 
 const signUpData = ref<RegisterAccountInput>({
@@ -38,12 +38,12 @@ async function submitRegister() {
     return;
   }
 
-  await login({ email, password });
+  await loginCustomer({ email, password });
   customer.value = data;
   loading.value = false;
 
   navigateTo({
-    path: localePath(ROUTES.account)
+    path: localizePath(ROUTES.account)
   });
 }
 </script>
@@ -117,9 +117,9 @@ async function submitRegister() {
     </form>
     <p class="text-base text-gray-400">
       {{ $t('messages.account.alreadyHaveAccount') }}
-      <NuxtLink :to="localePath(ROUTES.authLogin)" title="Login">
+      <LocalizedLink :to="ROUTES.authLogin" title="Login">
         {{ $t('messages.account.signInToYourAccount') }}
-      </NuxtLink>
+      </LocalizedLink>
     </p>
   </div>
 </template>

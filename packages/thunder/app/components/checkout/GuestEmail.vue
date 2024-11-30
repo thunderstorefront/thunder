@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-const { setGuestEmailToCart } = useCart();
+const { setGuestEmailToCart } = useCartApi();
 const { cart } = useCart();
-const { getCartId } = useCartToken();
+const { token } = useCartToken();
 const { showError } = useUiErrorHandler();
 
 const email = ref(cart.value?.email ?? '');
@@ -13,7 +13,7 @@ const loading = ref(false);
 async function setGuestEmailAddress(): Promise<void> {
   loading.value = true;
 
-  const data = await setGuestEmailToCart(getCartId(), email.value);
+  const data = await setGuestEmailToCart(token.value, email.value);
 
   if (!data) {
     showError('Unable to set email address');

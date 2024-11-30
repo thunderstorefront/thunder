@@ -4,8 +4,6 @@ import type { CustomerAddress } from '@thunderstorefront/types';
 defineProps<{
   address: CustomerAddress;
 }>();
-
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -42,9 +40,7 @@ const localePath = useLocalePath();
         </div>
       </BaseTypography>
       <div class="mt-4">
-        <NuxtLink
-          :to="localePath(`${ROUTES.accountAddressEdit}/${address.id}`)"
-        >
+        <LocalizedLink :to="`${ROUTES.accountAddressEdit}/${address.id}`">
           <UButton
             :padded="false"
             color="primary"
@@ -53,7 +49,7 @@ const localePath = useLocalePath();
             :label="$t('messages.general.edit')"
             type="submit"
           />
-        </NuxtLink>
+        </LocalizedLink>
       </div>
     </div>
   </div>

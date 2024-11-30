@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { cart } = useCart();
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -30,7 +29,7 @@ const localePath = useLocalePath();
       {{ $t('messages.shop.includingVat') }}
     </BaseTypography>
     <div class="my-6">
-      <NuxtLink :to="localePath(ROUTES.checkout)">
+      <LocalizedLink :to="ROUTES.checkout">
         <UButton
           color="primary"
           variant="solid"
@@ -39,7 +38,7 @@ const localePath = useLocalePath();
           type="submit"
           :label="$t('messages.shop.checkout')"
         />
-      </NuxtLink>
+      </LocalizedLink>
     </div>
     <div class="mb-6 border-b" />
     <CartDiscountCoupon />

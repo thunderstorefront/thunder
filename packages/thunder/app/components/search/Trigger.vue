@@ -1,10 +1,6 @@
-<script lang="ts" setup>
-const localePath = useLocalePath();
-</script>
-
 <template>
-  <NuxtLink
-    :to="localePath(ROUTES.search)"
+  <LocalizedLink
+    :to="ROUTES.search"
     class="relative flex"
     title="Search products"
   >
@@ -13,5 +9,5 @@ const localePath = useLocalePath();
         <Icon name="solar:magnifer-linear" class="h-8 w-8" />
       </template>
     </UButton>
-  </NuxtLink>
+  </LocalizedLink>
 </template>

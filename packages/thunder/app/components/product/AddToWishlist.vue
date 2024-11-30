@@ -6,7 +6,8 @@ const props = defineProps<{
 
 const { showSuccess } = useUiNotification();
 const { t } = useI18n();
-const { wishlist, addProductToWishlist, fetchWishlist } = useWishlist();
+const { wishlist } = useWishlist();
+const { addProductToWishlist, fetchWishlist } = useWishlistApi();
 
 async function addToWishlist() {
   if (props.productId && props.productTitle) {

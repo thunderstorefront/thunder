@@ -1,6 +1,10 @@
 <script lang="ts" setup>
+import type { ShippingMethod } from '@thunderstorefront/types';
+
+defineProps<{
+  shippingMethod?: ShippingMethod;
+}>();
 const { cart } = useCart();
-const { selectedShippingMethod } = useCheckout();
 </script>
 
 <template>
@@ -22,10 +26,8 @@ const { selectedShippingMethod } = useCheckout();
           :price="discount.amount"
         />
       </div>
-      <div v-if="selectedShippingMethod">
-        <CheckoutSummaryPriceItemShipping
-          :shipping-method="selectedShippingMethod"
-        />
+      <div v-if="shippingMethod">
+        <CheckoutSummaryPriceItemShipping :shipping-method="shippingMethod" />
       </div>
       <CheckoutSummaryPriceItem
         :label="$t('messages.shop.total')"

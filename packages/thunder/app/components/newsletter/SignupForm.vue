@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-const { subscribeGuestToNewsletter } = useNewsletter();
+const { subscribeGuestToNewsletter } = useNewsletterApi();
 
 const email = ref('');
 const validationErrorMessage = ref('');

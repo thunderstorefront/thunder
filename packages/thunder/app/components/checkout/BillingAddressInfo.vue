@@ -1,9 +1,13 @@
 <script lang="ts" setup>
-const { billingAddress } = useCheckout();
+import type { CartBillingAddress } from '@thunderstorefront/types';
+
+defineProps<{
+  billingAddress: CartBillingAddress;
+}>();
 </script>
 
 <template>
-  <div v-if="billingAddress" class="w-auto">
+  <div class="w-auto">
     <BaseTypography variant="subtitle">
       {{ $t('messages.checkout.address') }}
     </BaseTypography>

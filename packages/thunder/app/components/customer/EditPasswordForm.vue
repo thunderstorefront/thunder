@@ -3,7 +3,7 @@ const { showError } = useUiErrorHandler();
 const { showSuccess } = useUiNotification();
 const { t } = useI18n();
 const { customer } = useCustomer();
-const { changeCustomerPassword } = useCustomer();
+const { changeCustomerPassword } = useCustomerApi();
 
 const formData = reactive({
   currentPassword: '',

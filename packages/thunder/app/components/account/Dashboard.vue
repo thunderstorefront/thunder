@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { customer } = useCustomer();
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -29,7 +28,7 @@ const localePath = useLocalePath();
         </BaseTypography>
       </div>
       <div class="mt-4">
-        <NuxtLink :to="localePath(ROUTES.accountEdit)">
+        <LocalizedLink :to="ROUTES.accountEdit">
           <UButton
             :padded="false"
             color="primary"
@@ -38,7 +37,7 @@ const localePath = useLocalePath();
             :label="$t('messages.general.edit')"
             type="submit"
           />
-        </NuxtLink>
+        </LocalizedLink>
       </div>
     </BaseCard>
   </div>

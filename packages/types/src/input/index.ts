@@ -23,7 +23,7 @@ export type CartAddressInput = {
   vatId?: string;
 };
 
-export type SetBillingAddressInput = {
+export type SetCartAddressInput = {
   cartId: string;
   useForShipping: boolean;
   address: CartAddressInput;

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { AvailableShippingMethod } from '@thunderstorefront/types';
+import type { ShippingMethod } from '@thunderstorefront/types';
 
 defineProps<{
   isActive: boolean;
-  item: AvailableShippingMethod;
+  item: ShippingMethod;
 }>();
 
 defineEmits(['select-method']);

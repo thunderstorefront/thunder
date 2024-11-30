@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 
 const search = ref('');
 
@@ -9,7 +9,7 @@ function directToSearch() {
   }
 
   navigateTo({
-    path: localePath(ROUTES.search),
+    path: localizePath(ROUTES.search),
     query: {
       query: search.value
     }

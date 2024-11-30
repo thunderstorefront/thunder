@@ -1,55 +1,55 @@
 <script setup lang="ts">
-const localePath = useLocalePath();
+const localizePath = useLocalePath();
 const brands = [
   {
     url: '/images/brands/apple.webp',
     label: 'Apple',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/samsung.webp',
     label: 'Samsung',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/sony.webp',
     label: 'Sony',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/lg.webp',
     label: 'LG',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/hp.webp',
     label: 'HP',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/dell.webp',
     label: 'Dell',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/microsoft.webp',
     label: 'Microsoft',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/intel.webp',
     label: 'Intel',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/lenovo.webp',
     label: 'Lenovo',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   },
   {
     url: '/images/brands/philips.webp',
     label: 'Philips',
-    path: localePath(getCategoryPath('electronics/mobile-phones'))
+    path: localizePath(getCategoryPath('electronics/mobile-phones'))
   }
 ];
 </script>

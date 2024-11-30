@@ -3,8 +3,10 @@ defineProps({
   error: Error
 });
 
+const localizePath = useLocalePath();
+
 function handleError() {
-  clearError({ redirect: '/' });
+  clearError({ redirect: localizePath('/') });
 }
 </script>
 
