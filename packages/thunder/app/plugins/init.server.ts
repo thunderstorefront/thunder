@@ -1,10 +1,9 @@
 export default defineNuxtPlugin(async (): Promise<void> => {
-  const sdkConfig = useRuntimeConfig().public.thunderSdk;
   const config = useRuntimeConfig().public.thunder;
 
-  const cartToken = useCookie(sdkConfig.cartToken);
-  const customerToken = useCookie(sdkConfig.authToken);
-  const storeToken = useCookie(sdkConfig.storeToken);
+  const { token: storeToken, setStoreToken } = useStoreToken();
+  const { token: cartToken, setCartToken } = useCartToken();
+  const { token: customerToken, setAuthToken } = useAuthToken();
   const isReloaded = useCookie(config.reloadedToken);
 
   const { storeConfig, updateStoreConfig } = useStoreConfig();
@@ -15,9 +14,9 @@ export default defineNuxtPlugin(async (): Promise<void> => {
   const { createEmptyCart } = useCartApi();
 
   const handleInitError = (): void => {
-    storeToken.value = null;
-    cartToken.value = null;
-    customerToken.value = null;
+    setStoreToken(null);
+    setCartToken(null);
+    setAuthToken(null);
 
     if (import.meta.client && !isReloaded.value) {
       isReloaded.value = 'true';
@@ -41,7 +40,7 @@ export default defineNuxtPlugin(async (): Promise<void> => {
 
       if (error.value) throw error.value;
 
-      storeToken.value = data.value?.[0]?.storeId ?? null;
+      setStoreToken(data.value?.[0]?.storeId ?? null);
       storeConfig.value = data.value?.[0] ?? null;
     }
   };
@@ -58,7 +57,7 @@ export default defineNuxtPlugin(async (): Promise<void> => {
 
       if (error.value) throw error.value;
 
-      cartToken.value = data.value?.id ?? null;
+      setCartToken(data.value?.id ?? null);
       cart.value = data.value ?? null;
     }
   };

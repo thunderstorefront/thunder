@@ -4,7 +4,7 @@ import { useRuntimeConfig, useCookie } from '#app';
 
 export interface UseStoreToken {
   token: Ref<string>;
-  setStoreToken: (id: string) => void;
+  setStoreToken: (id: string | null) => void;
   resetStoreToken: () => void;
 }
 
@@ -12,7 +12,7 @@ export function useStoreToken(): UseStoreToken {
   const storeTokenKey = useRuntimeConfig().public.thunderSdk.storeToken;
   const cookie = useCookie(storeTokenKey);
 
-  function setStoreToken(id: string): void {
+  function setStoreToken(id: string | null): void {
     cookie.value = id;
   }
 
