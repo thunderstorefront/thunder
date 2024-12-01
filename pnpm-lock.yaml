@@ -147,10 +147,10 @@ importers:
         specifier: workspace:*
         version: link:../types
       nuxt-swiper:
-        specifier: ^2.0.0
-        version: 2.0.0(magicast@0.3.5)(rollup@4.28.0)
+        specifier: ^1.2.2
+        version: 1.2.2(magicast@0.3.5)(rollup@4.28.0)
       swiper:
-        specifier: ^11.1.14
+        specifier: ^11.1.15
         version: 11.1.15
       vue:
         specifier: 3.5.13
@@ -3611,8 +3611,8 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-swiper@2.0.0:
-    resolution: {integrity: sha512-9NJ7ipoo3sBqFOtnYccVjVPuywGqY1vA82R2YinHo/U4Mw8c0Uy/Q+ep7qihLWr/3wZq9BqFOKPuWKw5xKl77Q==}
+  nuxt-swiper@1.2.2:
+    resolution: {integrity: sha512-y4s/srISP4OuhXbYg9/W1/6EWnbcoHRGEKBKAvGP0I2h0b3enhqZNEk7854M3F89ys8waacBXektPzamgl5xwQ==}
 
   nuxt@3.14.0:
     resolution: {integrity: sha512-9RvptD0czK683RcD7tmrYtOk86TiW485gZob/tj1YiLVx+gmKJsq+1+kbl6XTg/cg9mbV9lNfErlCNPgXurs2A==}
@@ -4577,6 +4577,10 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  swiper@10.3.1:
+    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
+    engines: {node: '>= 4.7.0'}
 
   swiper@11.1.15:
     resolution: {integrity: sha512-IzWeU34WwC7gbhjKsjkImTuCRf+lRbO6cnxMGs88iVNKDwV+xQpBCJxZ4bNH6gSrIbbyVJ1kuGzo3JTtz//CBw==}
@@ -9145,10 +9149,10 @@ snapshots:
 
   nuxi@3.16.0: {}
 
-  nuxt-swiper@2.0.0(magicast@0.3.5)(rollup@4.28.0):
+  nuxt-swiper@1.2.2(magicast@0.3.5)(rollup@4.28.0):
     dependencies:
       '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.0)
-      swiper: 11.1.15
+      swiper: 10.3.1
     transitivePeerDependencies:
       - magicast
       - rollup
@@ -10308,6 +10312,8 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.1.1
+
+  swiper@10.3.1: {}
 
   swiper@11.1.15: {}
 

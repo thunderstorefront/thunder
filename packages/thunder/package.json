@@ -1,6 +1,6 @@
 {
   "name": "@thunderstorefront/thunder",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "type": "module",
   "main": "./nuxt.config.ts",
@@ -31,8 +31,8 @@
   "dependencies": {
     "@thunderstorefront/sdk": "workspace:*",
     "@thunderstorefront/types": "workspace:*",
-    "nuxt-swiper": "^2.0.0",
-    "swiper": "^11.1.14",
+    "nuxt-swiper": "^1.2.2",
+    "swiper": "^11.1.15",
     "vue-router": "4.5.0",
     "vue": "3.5.13"
   },

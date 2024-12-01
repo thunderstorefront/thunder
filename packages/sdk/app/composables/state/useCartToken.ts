@@ -4,7 +4,7 @@ import { useCookie } from '#app';
 
 export interface UseCartToken {
   token: Ref<string>;
-  setCartToken: (id: string) => void;
+  setCartToken: (id: string | null) => void;
   resetCartToken: () => void;
 }
 
@@ -12,7 +12,7 @@ export function useCartToken(): UseCartToken {
   const cartTokenKey = useRuntimeConfig().public.thunderSdk.cartToken;
   const cookie = useCookie(cartTokenKey);
 
-  function setCartToken(id: string): void {
+  function setCartToken(id: string | null): void {
     cookie.value = id;
   }
 
