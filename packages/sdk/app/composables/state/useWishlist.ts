@@ -1,7 +1,5 @@
 import type { Wishlist, WishlistListInput } from '@thunderstorefront/types';
 import type { Ref } from 'vue';
-import { useState } from '#app';
-import { useWishlistApi } from '../api/useWishlistApi';
 
 export interface UseWishlist {
   wishlist: Ref<Wishlist | null>;

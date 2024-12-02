@@ -1,6 +1,5 @@
 import type { Ref } from 'vue';
 import { computed } from 'vue';
-import { useCookie } from '#app';
 
 export interface UseCartToken {
   token: Ref<string>;

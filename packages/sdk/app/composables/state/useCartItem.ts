@@ -1,9 +1,5 @@
 import type { CartItemInput, CartItem } from '@thunderstorefront/types';
-import { useState } from '#app';
 import { type Ref, type ComputedRef, computed } from 'vue';
-import { useCart } from './useCart';
-import { useCartItemApi } from '../api/useCartItemApi';
-import { useCartToken } from './useCartToken';
 
 export interface UseCartItem {
   loading: Ref<boolean>;

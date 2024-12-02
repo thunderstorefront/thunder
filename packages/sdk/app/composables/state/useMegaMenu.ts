@@ -1,7 +1,5 @@
 import type { MegaMenu, MegaMenuItem } from '@thunderstorefront/types';
-import { useState } from '#app';
 import { computed, type Ref } from 'vue';
-import { useCategoryApi } from '../api/useCategoryApi';
 
 interface UseMegaMenu {
   megaMenu: Ref<MegaMenu | null>;

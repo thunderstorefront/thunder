@@ -1,5 +1,4 @@
 import type { Category } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCategoryApi<TCategory = Category> {
   fetchCategory: (slug: string) => Promise<TCategory>;

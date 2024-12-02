@@ -3,7 +3,6 @@ import type {
   CheckoutAgreement,
   CheckoutShipping
 } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCheckoutApi<
   TCheckoutAgreement = CheckoutAgreement,

@@ -1,5 +1,4 @@
 import type { Ref } from 'vue';
-import { useState } from '#app';
 
 export interface UseCheckoutOrder {
   orderNumber: Ref<string | null>;

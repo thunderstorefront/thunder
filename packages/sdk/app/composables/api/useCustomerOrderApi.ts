@@ -1,5 +1,4 @@
 import type { CustomerOrder, OrderListInput } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCustomerOrderApi<TCustomerOrder = CustomerOrder> {
   fetchOrders: (input?: OrderListInput) => Promise<TCustomerOrder[]>;

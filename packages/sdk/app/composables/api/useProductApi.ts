@@ -3,7 +3,6 @@ import type {
   ProductListInput,
   ProductPage
 } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseProductApi<
   TProductPage = ProductPage,

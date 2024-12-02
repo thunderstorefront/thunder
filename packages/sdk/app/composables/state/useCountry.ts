@@ -1,7 +1,5 @@
 import type { Country } from '@thunderstorefront/types';
 import type { Ref } from 'vue';
-import { useState } from '#app';
-import { useCountryApi } from '../api/useCountryApi';
 
 export interface UseCountry {
   countries: Ref<Country[]>;

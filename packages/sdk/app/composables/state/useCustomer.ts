@@ -1,7 +1,5 @@
 import type { Customer } from '@thunderstorefront/types';
 import type { Ref } from 'vue';
-import { useState } from '#app';
-import { useCustomerApi } from '../api/useCustomerApi';
 
 export interface UseCustomer {
   customer: Ref<Customer | null>;

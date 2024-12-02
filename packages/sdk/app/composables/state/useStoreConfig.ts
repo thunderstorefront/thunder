@@ -1,7 +1,5 @@
 import type { StoreConfig } from '@thunderstorefront/types';
 import type { Ref } from 'vue';
-import { useState } from '#app';
-import { useStoreConfigApi } from '../api/useStoreConfigApi';
 
 export interface UseStoreConfig {
   storeConfig: Ref<StoreConfig | null>;

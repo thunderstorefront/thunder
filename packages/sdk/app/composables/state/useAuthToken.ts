@@ -1,5 +1,4 @@
 import type { Ref } from 'vue';
-import { useRuntimeConfig, useCookie } from '#app';
 
 export interface UseAuthToken {
   token: Ref<string>;

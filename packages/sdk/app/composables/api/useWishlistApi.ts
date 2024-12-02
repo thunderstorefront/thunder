@@ -1,5 +1,4 @@
 import type { Wishlist, WishlistListInput } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseWishlistApi<TWishlist = Wishlist> {
   fetchWishlist: (input?: WishlistListInput) => Promise<TWishlist>;

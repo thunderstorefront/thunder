@@ -1,5 +1,4 @@
 import type { Country } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCountryApi<TCountry = Country> {
   fetchCountries: () => Promise<TCountry[]>;
