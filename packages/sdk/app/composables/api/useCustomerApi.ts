@@ -5,7 +5,6 @@ import type {
   RegisterAccountInput,
   UpdateUserInput
 } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCustomerApi<TCustomer = Customer, TCart = Cart> {
   fetchCustomer: () => Promise<TCustomer>;

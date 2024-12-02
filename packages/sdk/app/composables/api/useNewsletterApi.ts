@@ -1,5 +1,3 @@
-import { useClient } from '../utils';
-
 export interface UseNewsletterApi {
   subscribeGuestToNewsletter: (email: string) => Promise<string>;
 }

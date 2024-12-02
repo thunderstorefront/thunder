@@ -1,5 +1,4 @@
 import type { Cart, CartItemInput } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCartItemApi<TCart = Cart> {
   removeItem: (cartId: string, itemId: string) => Promise<TCart>;

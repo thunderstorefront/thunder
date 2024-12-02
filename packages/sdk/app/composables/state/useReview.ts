@@ -4,7 +4,6 @@ import type {
   Rating,
   ReviewsListInput
 } from '@thunderstorefront/types';
-import { useClient } from '../utils/useClient';
 
 export interface UseReview {
   fetchReviews: (

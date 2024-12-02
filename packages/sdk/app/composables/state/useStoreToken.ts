@@ -1,6 +1,4 @@
-import type { Ref } from 'vue';
-import { computed } from 'vue';
-import { useRuntimeConfig, useCookie } from '#app';
+import { type Ref, computed } from 'vue';
 
 export interface UseStoreToken {
   token: Ref<string>;

@@ -1,5 +1,4 @@
 import type { Route } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseStoreRouteApi<TRoute = Route> {
   fetchRoute: (route: string) => Promise<TRoute>;

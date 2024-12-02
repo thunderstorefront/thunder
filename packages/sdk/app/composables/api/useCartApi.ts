@@ -1,5 +1,4 @@
 import type { Cart, SetCartAddressInput } from '@thunderstorefront/types';
-import { useClient } from '../utils/useClient';
 
 export interface UseCartApi<TCart = Cart> {
   fetchCart: (cartId: string) => Promise<TCart>;

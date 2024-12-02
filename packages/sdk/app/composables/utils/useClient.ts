@@ -1,9 +1,5 @@
 import { FetchError, type FetchOptions } from 'ofetch';
 import type { CustomError, CustomErrorDetails } from '@thunderstorefront/types';
-import { useNuxtApp } from '#app';
-import { useClientUrl } from './useClientUrl';
-import { useAuthToken } from '../state/useAuthToken';
-import { useStoreToken } from '../state/useStoreToken';
 
 const defaultError = (err: FetchError): CustomError => ({
   error: {

@@ -1,5 +1,4 @@
 import type { StoreConfig } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseStoreConfigApi<TStoreConfig = StoreConfig> {
   fetchStoresConfig: () => Promise<TStoreConfig[]>;

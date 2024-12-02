@@ -4,7 +4,6 @@ import type {
   CustomerAddressListInput,
   UpdateCustomerAddressInput
 } from '@thunderstorefront/types';
-import { useClient } from '../utils';
 
 export interface UseCustomerAddressApi<TCustomerAddress = CustomerAddress> {
   fetchCustomerAddresses: (
