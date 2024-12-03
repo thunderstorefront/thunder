@@ -1,7 +1,7 @@
 {
   "name": "@thunderstorefront/types",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Thunder Storefront types package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

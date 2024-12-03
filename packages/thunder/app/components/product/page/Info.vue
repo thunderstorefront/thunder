@@ -26,8 +26,6 @@ defineProps<{
 
     <slot name="options"> </slot>
 
-    <slot name="variants"> </slot>
-
     <slot name="add-to-cart"> </slot>
   </div>
 </template>

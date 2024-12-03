@@ -1,5 +1,4 @@
 import type { Ref } from 'vue';
-import { computed } from 'vue';
 
 export interface UseCartToken {
   token: Ref<string>;
@@ -10,17 +9,25 @@ export interface UseCartToken {
 export function useCartToken(): UseCartToken {
   const cartTokenKey = useRuntimeConfig().public.thunderSdk.cartToken;
   const cookie = useCookie(cartTokenKey);
+  const tokenState = useState<string | null>(
+    cartTokenKey,
+    () => cookie.value ?? null
+  );
+
+  watch(tokenState, (newVal) => {
+    cookie.value = newVal;
+  });
 
   function setCartToken(id: string | null): void {
-    cookie.value = id;
+    tokenState.value = id;
   }
 
   function resetCartToken(): void {
-    cookie.value = null;
+    tokenState.value = null;
   }
 
   return {
-    token: computed(() => cookie.value ?? ''),
+    token: computed(() => tokenState.value ?? ''),
     setCartToken,
     resetCartToken
   };

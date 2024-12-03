@@ -26,7 +26,7 @@ defineProps<{
           <span class="mr-2">{{ qty }}</span>
           <span class="mr-2">x</span>
           <span class="text-base font-semibold">
-            <ProductPrice :price="product.priceRange.minPrice" />
+            <ProductPrice :price-range="product.priceRange" />
           </span>
         </div>
       </BaseTypography>

@@ -347,7 +347,7 @@ export const products: ProductPage[] = [
       },
       maxPrice: {
         currency: 'USD',
-        value: 2499
+        value: 1999
       }
     },
     variants: [],
@@ -388,7 +388,7 @@ export const products: ProductPage[] = [
       },
       maxPrice: {
         currency: 'USD',
-        value: 1999
+        value: 1499
       }
     },
     variants: [],

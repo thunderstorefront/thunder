@@ -9,7 +9,7 @@ const { cart } = useCart();
         {{ $t('messages.shop.subtotal') }}
       </div>
       <div v-if="cart.prices">
-        <ProductPrice :price="cart.prices.subtotal" />
+        <Money v-bind="cart.prices.subtotal" />
       </div>
     </BaseTypography>
     <hr class="my-4" />
@@ -22,7 +22,7 @@ const { cart } = useCart();
         {{ $t('messages.shop.total') }}
       </div>
       <div v-if="cart.prices.grandTotal">
-        <ProductPrice :price="cart.prices.grandTotal" />
+        <Money v-bind="cart.prices.grandTotal" />
       </div>
     </BaseTypography>
     <BaseTypography variant="caption" color="text-gray-600">

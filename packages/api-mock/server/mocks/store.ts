@@ -16,6 +16,5 @@ export const mockStoreConfig = (
   storeSortOrder: DEFAULT_SORT_ORDER,
   catalogDefaultSortBy: DEFAULT_SORT_BY,
   gridPerPage: DEFAULT_GRID_PER_PAGE,
-  rootCategoryId: 'cat-electronics',
   baseCurrencyCode: currencyCode
 });

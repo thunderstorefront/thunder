@@ -43,10 +43,9 @@ useHead({
           <template #description>
             <p v-html="product.shortDescription" />
           </template>
-          <template #rating>
+          <template v-if="product.reviewCount" #rating>
             <StarRating :value="product.ratingSummary" :size="'24px'" />
             <a
-              v-if="product.reviewCount"
               href="#reviews"
               class="cursor-pointer text-sm font-normal leading-3 text-gray-500 underline duration-100 hover:text-gray-700"
             >
@@ -58,9 +57,6 @@ useHead({
           </template>
           <template #options>
             <ProductPageOptions :product="product" class="mb-6" />
-          </template>
-          <template #variants>
-            <ProductPageVariants :product="product" class="mb-6" />
           </template>
           <template #add-to-cart>
             <ProductAddToCartActions :product="product">

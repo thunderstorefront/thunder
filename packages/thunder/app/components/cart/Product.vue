@@ -44,7 +44,7 @@ const imgHeight = 80;
       >
         <div class="flex justify-end">
           <BaseTypography color="text-gray-800">
-            <ProductPrice :price="product.priceRange.minPrice" />
+            <ProductPrice :price-range="product.priceRange" />
           </BaseTypography>
         </div>
         <div>

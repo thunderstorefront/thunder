@@ -1,4 +1,4 @@
-import type { ProductVariant } from '@thunderstorefront/types';
+import type { ProductOption, ProductVariant } from '@thunderstorefront/types';
 import type { Ref } from 'vue';
 
 export interface UseVariants {
@@ -8,6 +8,10 @@ export interface UseVariants {
     input: Record<string, string>
   ) => ProductVariant | null;
   setVariant: (productId: string, variant: ProductVariant) => void;
+  findSelectedOptions: (
+    productOptions: ProductOption[],
+    selectedVariant: ProductVariant
+  ) => Record<string, string>;
 }
 
 export function useVariants(): UseVariants {
@@ -34,9 +38,32 @@ export function useVariants(): UseVariants {
     variants.value[productId] = variant;
   }
 
+  function findSelectedOptions(
+    productOptions: ProductOption[],
+    selectedVariant: ProductVariant
+  ): Record<string, string> {
+    return productOptions.reduce(
+      (result, option) => {
+        const selectedValue = option.values.find((value) =>
+          selectedVariant.optionValues.some(
+            (variantValue) => variantValue.id === value.id
+          )
+        );
+
+        if (selectedValue) {
+          result[option.id] = selectedValue.id; // Map option.id to optionValue.id
+        }
+
+        return result;
+      },
+      {} as Record<string, string>
+    );
+  }
+
   return {
     variants,
     findVariant,
+    findSelectedOptions,
     setVariant
   };
 }
