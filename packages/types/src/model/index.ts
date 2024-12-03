@@ -7,7 +7,6 @@ export * from './country';
 export * from './customer';
 export * from './filter';
 export * from './media';
-export * from './menu';
 export * from './money';
 export * from './pagination';
 export * from './product';

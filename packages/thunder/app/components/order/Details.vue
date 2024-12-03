@@ -27,7 +27,7 @@ defineProps<{
         <div v-if="order.total.grandTotal" class="flex items-center">
           <span class="mr-2">{{ $t('messages.account.totalAmount') }}</span>
           <strong>
-            <ProductPrice :price="order.total.grandTotal" />
+            <Money v-bind="order.total.grandTotal" />
           </strong>
         </div>
       </BaseTypography>

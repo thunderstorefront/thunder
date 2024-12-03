@@ -5,6 +5,5 @@ export type StoreConfig = {
   storeSortOrder: number;
   catalogDefaultSortBy: string;
   gridPerPage: number;
-  rootCategoryId: string;
   baseCurrencyCode: string;
 };

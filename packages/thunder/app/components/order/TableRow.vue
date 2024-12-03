@@ -17,7 +17,7 @@ const showDetails = ref(false);
       {{ order.orderDate }}
     </td>
     <td class="whitespace-nowrap px-6 py-4">
-      <ProductPrice :price="order.total.grandTotal" />
+      <Money v-bind="order.total.grandTotal" />
     </td>
     <td class="whitespace-nowrap px-6 py-4">
       <UButton

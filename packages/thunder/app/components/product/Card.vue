@@ -11,6 +11,10 @@ const { addToCart, addToWishlist } = useProductActions(props.product);
 const quantity = ref(1);
 
 const price = computed(() => props.product.priceRange);
+
+const isSale = computed(
+  () => (price.value.maxPrice?.value ?? 0) > price.value.minPrice?.value
+);
 </script>
 
 <template>
@@ -28,7 +32,7 @@ const price = computed(() => props.product.priceRange);
       <div class="relative mb-4 rounded-xl bg-white p-2 lg:p-4">
         <div class="absolute left-2 top-2">
           <span
-            v-if="price.maxPrice?.value !== price.minPrice.value"
+            v-if="isSale"
             class="inline-block rounded-full bg-green-300 px-2 py-1 text-xs uppercase last:mr-0"
           >
             {{ $t('messages.shop.sale') }}
@@ -80,17 +84,7 @@ const price = computed(() => props.product.priceRange);
           </span></span
         >
         <div class="mt-auto flex w-full items-center justify-between">
-          <div v-if="price.maxPrice?.value === price.minPrice.value">
-            <ProductPrice :price="price.minPrice" />
-          </div>
-          <div v-else class="flex items-center gap-2 lg:gap-4">
-            <ProductPrice class="lg:font-semibold" :price="price.minPrice" />
-            <ProductPrice
-              v-if="price.maxPrice"
-              :price="price.maxPrice"
-              class="hidden text-xs line-through lg:block lg:text-sm"
-            />
-          </div>
+          <ProductCardPrice :product="product" />
           <UButton
             color="green"
             variant="ghost"

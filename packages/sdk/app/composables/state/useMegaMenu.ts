@@ -1,27 +1,23 @@
-import type { MegaMenu, MegaMenuItem } from '@thunderstorefront/types';
-import { computed, type Ref } from 'vue';
+import type { Category } from '@thunderstorefront/types';
+import type { Ref } from 'vue';
 
 interface UseMegaMenu {
-  megaMenu: Ref<MegaMenu | null>;
-  menuItems: Ref<MegaMenuItem[]>;
+  menuItems: Ref<Category[]>;
   showMegaMenu: Ref<boolean>;
-  updateMegaMenu: (rootCategoryId: string) => Promise<MegaMenu>;
+  updateMegaMenu: () => Promise<Category[]>;
 }
 
 export function useMegaMenu(): UseMegaMenu {
-  const megaMenu = useState<MegaMenu | null>('megaMenu', () => null);
+  const client = useClient();
+  const menuItems = useState<Category[]>('menuItems', () => []);
   const showMegaMenu = useState<boolean>('showMegaMenu', () => false);
-  const { fetchCategory } = useCategoryApi();
 
-  const menuItems = computed(() => megaMenu.value?.children ?? []);
-
-  async function updateMegaMenu(rootCategoryId: string): Promise<MegaMenu> {
-    megaMenu.value = await fetchCategory(rootCategoryId);
-    return megaMenu.value;
+  async function updateMegaMenu(): Promise<Category[]> {
+    menuItems.value = await client<Category[]>(`/api/categories`);
+    return menuItems.value;
   }
 
   return {
-    megaMenu,
     menuItems,
     showMegaMenu,
     updateMegaMenu

@@ -4,15 +4,15 @@ import { categories } from '../../data/categories';
 import { products } from '../../data/products';
 
 function findCategoryBySlug(
-  category: Category,
+  categories: Category[],
   slug?: string
 ): Category | null {
-  if (category.slug === slug) {
-    return category;
-  }
-  if (category.children) {
-    for (const child of category.children) {
-      const foundCategory = findCategoryBySlug(child, slug);
+  for (const category of categories) {
+    if (category.slug === slug) {
+      return category;
+    }
+    if (category.children) {
+      const foundCategory = findCategoryBySlug(category.children, slug);
       if (foundCategory) {
         return foundCategory;
       }
@@ -23,19 +23,15 @@ function findCategoryBySlug(
 
 export default defineEventHandler((event) => {
   const slug = getRouterParam(event, 'slug');
-  const rootCategory = categories[0];
+  const category = findCategoryBySlug(categories, slug);
 
-  if (rootCategory) {
-    const category = findCategoryBySlug(rootCategory, slug);
-
-    if (category) {
-      return {
-        ...mockRouteData('Category'),
-        id: category.id,
-        title: category.title,
-        slug: category.slug
-      };
-    }
+  if (category) {
+    return {
+      ...mockRouteData('Category'),
+      id: category.id,
+      title: category.title,
+      slug: category.slug
+    };
   }
 
   const product = products.find((product) => product.slug === slug);

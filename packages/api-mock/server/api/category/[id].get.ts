@@ -2,27 +2,28 @@ import { categories } from '../../data/categories';
 import type { Category } from '@thunderstorefront/types';
 
 function findCategoryById(
-  category: Category,
+  categories: Category[],
   id?: string
-): Category | undefined {
-  if (category.id === id) {
-    return category;
-  }
-  if (category.children) {
-    for (const child of category.children) {
-      const foundCategory = findCategoryById(child, id);
+): Category | null {
+  for (const category of categories) {
+    if (category.id === id) {
+      return category;
+    }
+    if (category.children) {
+      const foundCategory = findCategoryById(category.children, id);
       if (foundCategory) {
         return foundCategory;
       }
     }
   }
+  return null;
 }
 
 export default defineEventHandler((event): Category | undefined => {
   const id = getRouterParam(event, 'id');
-  const rootCategory = categories[0];
+  const category = findCategoryById(categories, id);
 
-  if (!rootCategory) return;
+  if (!category) throw new Error('Cant find category');
 
-  return findCategoryById(rootCategory, id);
+  return category;
 });

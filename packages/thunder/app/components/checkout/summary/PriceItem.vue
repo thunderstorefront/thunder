@@ -16,7 +16,7 @@ defineProps<{
       <span>{{ label }}</span>
     </div>
     <div class="font-bold">
-      <ProductPrice :price="price" />
+      <Money v-bind="price" />
     </div>
   </BaseTypography>
 </template>

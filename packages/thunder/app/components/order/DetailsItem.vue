@@ -11,7 +11,7 @@ defineProps<{
     <BaseTypography variant="caption" class="flex flex-col">
       <span>{{ item.productName }}</span>
       <span>{{ item.quantityOrdered }}</span>
-      <ProductPrice :price="item.productSalePrice" />
+      <Money v-bind="item.productSalePrice" />
     </BaseTypography>
   </div>
 </template>

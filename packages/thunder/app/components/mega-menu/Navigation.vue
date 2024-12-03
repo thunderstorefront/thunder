@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 const { updateMegaMenu, menuItems } = useMegaMenu();
-const { storeConfig } = useStoreConfig();
 
-const rootCategory = storeConfig.value?.rootCategoryId ?? '';
-
-await useAsyncData('megaMenu', () => updateMegaMenu(rootCategory));
+await useAsyncData('megaMenu', () => updateMegaMenu());
 </script>
 
 <template>

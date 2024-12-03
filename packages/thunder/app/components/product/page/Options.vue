@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { ProductPage } from '@thunderstorefront/types';
+import type { Product, ProductVariant } from '@thunderstorefront/types';
 
-const props = defineProps<{ product: ProductPage }>();
+const props = defineProps<{ product: Product }>();
 
 const { inputs, setInput } = useAddToCartForm();
-const { variants, setVariant, findVariant } = useVariants();
+const { variants, setVariant, findVariant, findSelectedOptions } =
+  useVariants();
+const { setPreviewImage } = usePreviewImage();
 
 const selectedVariant = computed(() => variants.value[props.product.id]);
 
@@ -20,12 +22,21 @@ function selectOption(optionId: string, valueId: string): void {
     variantId: selectedVariant.value?.id,
     options: selectedOptions.value
   });
-}
-
-watch(selectedOptions, () => {
   const variant = findVariant(props.product.variants, selectedOptions.value);
   if (variant) {
-    setVariant(props.product.id, variant);
+    selectVariant(variant);
+  }
+}
+
+function selectVariant(variant: ProductVariant) {
+  setPreviewImage(variant.thumbnail.url);
+  setVariant(props.product.id, variant);
+  selectedOptions.value = findSelectedOptions(props.product.options, variant);
+}
+
+onMounted(() => {
+  if (selectedVariant.value) {
+    selectVariant(selectedVariant.value);
   }
 });
 </script>
